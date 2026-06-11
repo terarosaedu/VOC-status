@@ -1,101 +1,342 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TERAROSA 교육 & 서비스 소식지</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"/>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERAROSA VOC 현황 대시보드</title>
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="./data.js"></script>
+
+    <style>
+        body { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; background-color: #f4f6f9; margin: 0; padding: 0; color: #333; }
+        .header-wrapper { background-color: #fff; width: 100%; }
+        .top-logo-area { padding: 15px 30px; }
+        .title-banner { background-color: #231815; padding: 35px 30px 30px 30px; border-bottom: 4px solid #CE0019; display: flex; justify-content: space-between; align-items: flex-end; }
+        .title-banner h1 { color: #ffffff; font-size: 28px; margin: 0 0 10px 0; font-weight: bold; letter-spacing: -0.5px; }
+        .title-banner p { color: #a8a096; font-size: 12px; margin: 0; letter-spacing: 2.5px; font-weight: 600; }
+
+        .month-select { padding: 8px 20px; font-size: 16px; font-weight: bold; font-family: 'Pretendard', sans-serif; border-radius: 5px; border: 2px solid #CE0019; background-color: #fff; color: #231815; cursor: pointer; outline: none; }
+
+        .dashboard-content { padding: 20px 30px; }
+        
+        /* 💡 상단 안내 문구 박스 스타일 */
+        .notice-box {
+            background-color: #ffffff;
+            border-left: 4px solid #CE0019;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 14px;
+            color: #444;
+            line-height: 1.5;
+            letter-spacing: -0.3px;
+        }
+
+        .dashboard-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 15px; }
+        .card { background: #fff; padding: 10px 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: flex-start; }
+        
+        .card-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; text-align: center; }
+        .card-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .kpi-value { font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 5px; }
+        .kpi-sub { font-size: 14px; text-align: center; color: #555; }
+        
+        .mtd-label {
+            font-size: 13px; color: #4a81d4; background-color: #eaf1fa; 
+            padding: 6px; border-radius: 4px; margin-top: 12px; 
+            text-align: center; font-weight: bold;
+        }
+
+        .row-2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .row-3 { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .chart-container { position: relative; height: 320px; width: 100%; }
+        .chart-container-large { position: relative; height: 350px; width: 100%; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 15px; }
+        table, th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #f9f9f9; font-weight: bold; }
+        .text-left { text-align: left; }
+        .monthly-table { margin-top: 0; border-top: none; table-layout: fixed; }
+        .monthly-table th.row-header { width: 160px; background-color: #fff; text-align: left; white-space: nowrap; font-weight: normal; }
+        .monthly-table th.month-header { background-color: #fff; font-weight: bold; }
+        .legend-box { display:inline-block; width:12px; height:12px; margin-right:8px; vertical-align:middle; }
+        .legend-line { display:inline-block; width:16px; height:4px; margin-right:8px; vertical-align:middle; }
+        .bg-gray { background-color: #dcdde1; }
+        .bg-blue { background-color: #4a81d4; }
+        .bg-dark { background-color: #1c3664; }
+    </style>
 </head>
 <body>
 
-<header class="header-wrap">
-  <div class="header-top">
-      <img class="logo-img" src="img/logo.png" alt="TERAROSA" />
-    <div class="header-right">
-      <div class="label">Education Service Team</div>
+    <div class="header-wrapper">
+        <div class="top-logo-area">
+            <img src="./logo.png" alt="TERAROSA" style="height: 28px; width: auto; object-fit: contain; display: block;">
+        </div>
+        <div class="title-banner">
+            <div>
+                <h1 id="title-month">VOC 현황 . 2026년 5월</h1>
+                <p>EDUCATION & SERVICE TEAM</p>
+            </div>
+            <div>
+                <select id="monthSelector" class="month-select">
+                    <option value="5월" selected>2026년 5월</option>
+                    <option value="4월">2026년 4월</option>
+                    <option value="3월">2026년 3월</option>
+                    <option value="2월">2026년 2월</option>
+                    <option value="1월">2026년 1월</option>
+                </select>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="header-title-band">
-    <h1>교육 & 서비스 소식지</h1>
-    <p>EDUCATION & SERVICE NEWSLETTER</p>
-  </div>
-</header>
 
-<div class="latest-banner">
-  <span class="latest-label">LATEST</span>
-  <span class="latest-title">VOL.26-3 · 친절은 출발점입니다 : 진짜 서비스는 고객의 시선에서 완성됩니다</span>
-  <a class="latest-link" href="26_3/26_3.html">최신호 읽기 →</a>
-</div>
+    <div class="dashboard-content">
+        <div class="notice-box">
+            <strong>[안내]</strong> 고객센터로 접수된 VOC 클레임은 고객이 직접 시간을 들여 남긴 의견입니다.<br>
+            각 책임부서는 주요 발생 이슈를 정기적으로 확인하고 원인 개선 및 재발 방지 활동에 활용해 주시기 바랍니다.
+        </div>
 
-<main class="main">
-  <div class="sec-head">
-    <div class="sec-head-bar"></div>
-    <div>
-      <div class="sec-head-en">Archive</div>
-      <div class="sec-head-ko">발행 목록</div>
+        <div class="dashboard-container">
+            <div class="card">
+                <div class="card-title">2026 Total VOC (YTD)</div>
+                <div class="card-body">
+                    <div class="kpi-value" id="kpi-total">6,658건</div>
+                    <div class="kpi-sub" style="display: flex; justify-content: space-around; margin-top: 10px;">
+                        <span>일반(단순) <strong id="kpi-general">6,066건</strong></span>
+                        <span>클레임 <strong id="kpi-claim">169건</strong></span>
+                    </div>
+                    <div id="kpi-hq" style="font-size: 12px; color: #888; text-align: center; margin-top: 5px;"></div>
+                    <div id="mtd-total" class="mtd-label"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">온라인 클레임 (YTD)</div>
+                <div class="card-body">
+                    <div class="kpi-value" id="kpi-online">121건</div>
+                    <div class="kpi-sub" id="kpi-online-yoy">▼ YoY -21.9% 감소</div>
+                    <div id="mtd-online" class="mtd-label"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">점포 클레임 (YTD)</div>
+                <div class="card-body">
+                    <div class="kpi-value" id="kpi-store">45건</div>
+                    <div class="kpi-sub" id="kpi-store-yoy">▼ YoY -29.7% 감소</div>
+                    <div id="mtd-store" class="mtd-label"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">접수 채널별 비중 (YTD)</div>
+                <div class="card-body" style="height: 150px; position: relative;">
+                    <canvas id="channelChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-2">
+            <div class="card">
+                <div class="card-title">책임부서별 클레임 현황 (YTD)</div>
+                <div class="card-body">
+                    <div class="chart-container" style="height: 200px;">
+                        <canvas id="deptChart"></canvas>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">책임부서</th>
+                                <th style="width: 60%;">상세</th>
+                                <th style="width: 15%;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dept-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">자사몰(판매처) 클레임 비중 (YTD)</div>
+                <div class="card-body">
+                    <div class="chart-container" style="height: 400px;">
+                        <canvas id="onlinePieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">점포 클레임 비중 (YTD)</div>
+                <div class="card-body">
+                    <div class="chart-container" style="height: 400px;">
+                        <canvas id="storePieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-3">
+            <div class="card">
+                <div class="card-title" style="text-align: left;">[ 월별 클레임 현황 (2026년) ]</div>
+                <div class="card-body">
+                    <div class="chart-container-large" style="padding-left: 160px; padding-right: 20px; box-sizing: border-box;">
+                        <canvas id="monthlyTrendChart"></canvas>
+                    </div>
+                    <table class="monthly-table">
+                        <thead>
+                            <tr>
+                                <th class="row-header" style="border: none;"></th>
+                                <th class="month-header">1월</th><th class="month-header">2월</th><th class="month-header">3월</th><th class="month-header">4월</th><th class="month-header">5월</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="row-header"><span class="legend-box bg-gray"></span>이물질 건수</th>
+                                <td>45</td><td>69</td><td>33</td><td>27</td><td>23</td>
+                            </tr>
+                            <tr>
+                                <th class="row-header"><span class="legend-line bg-blue"></span>클레임</th>
+                                <td>45</td><td>37</td><td>35</td><td>31</td><td>21</td>
+                            </tr>
+                            <tr>
+                                <th class="row-header"><span class="legend-line bg-dark"></span>점당 클레임 건수</th>
+                                <td>0.20</td><td>0.16</td><td>0.45</td><td>0.32</td><td>0.32</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="card-grid" id="cardGrid">
+    <script>
+        Chart.register(ChartDataLabels);
+        Chart.defaults.font.family = "'Pretendard', 'Malgun Gothic', sans-serif";
 
-<a class="issue-card" href="26_1/26_1.html">
-  <div class="card-thumb">
-    <div class="card-thumb-vol">01</div>
-  </div>
-  <div class="card-body">
-    <div class="card-meta">VOL. 26-1 · 2026 V1</div>
-    <div class="card-title">"사과와 오렌지를 비교하지 마라"<br>CoE가 심판대를 셋으로 쪼갠 이유</div>
-    <div class="card-desc">2024년부터 도입된 가공법별 3카테고리 방식 해설 · 2026년 1-2월 교육 리포트 (총 184명 수료) · 3월 교육 캘린더</div>
-    <div class="card-footer">
-      <span class="card-date">2026. 03</span>
-      <span class="card-arrow">→</span>
-    </div>
-  </div>
-</a>
+        const legendMarginPlugin = {
+            id: 'legendMargin',
+            beforeInit(chart) {
+                const originalFit = chart.legend.fit;
+                chart.legend.fit = function fit() {
+                    originalFit.bind(chart.legend)();
+                    this.height += 20; 
+                }
+            }
+        };
 
-<a class="issue-card" href="26_2/26_2.html">
-  <div class="card-thumb">
-    <div class="card-thumb-vol">02</div>
-  </div>
-  <div class="card-body">
-    <div class="card-meta">VOL. 26-2 · 2026 V2</div>
-    <div class="card-title">이름에 담긴 산지의 무게<br>우리가 커피의 이름을 길게 부르게 된 이유</div>
-    <div class="card-desc">산지 중심 철학을 담은 테라로사 네이밍 규칙 개편 · 2026년 1-4월 교육 리포트 (총 255명 수료) · 5월 교육 캘린더</div>
-    <div class="card-footer">
-      <span class="card-date">2026. 05</span>
-      <span class="card-arrow">→</span>
-    </div>
-  </div>
-</a>
+        let channelChart, deptChart, onlinePieChart, storePieChart;
 
-<a class="issue-card" href="26_3/26_3.html">
-  <div class="card-thumb">
-    <div class="card-thumb-vol">03</div>
-    <div class="card-thumb-badge">LATEST</div>
-  </div>
-  <div class="card-body">
-    <div class="card-meta">VOL. 26-3 · 2026 V3</div>
-    <div class="card-title">친절은 출발점입니다<br>진짜 서비스는 고객의 시선에서 완성됩니다</div>
-    <div class="card-desc">현장 서비스 커뮤니케이션 · 2026년 1-6월 교육 리포트 · 7월 교육 캘린더</div>
-    <div class="card-footer">
-      <span class="card-date">2026. 07</span>
-      <span class="card-arrow">→</span>
-    </div>
-  </div>
-</a>
+        window.onload = function() {
+            channelChart = new Chart(document.getElementById('channelChart'), {
+                type: 'bar', data: { datasets: [{ barThickness: 12 }] },
+                options: {
+                    indexAxis: 'y', layout: { padding: { right: 30 } },
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: function(ctx) { return ' ' + ctx.raw + '% (' + ctx.dataset.counts[ctx.dataIndex].toLocaleString() + '건)'; } } },
+                        datalabels: { anchor: 'end', align: 'right', color: '#333', font: { size: 11, weight: 'bold' }, formatter: v => v + '%' }
+                    },
+                    scales: { x: { display: false, max: 100 }, y: { grid: { display: false } } }, maintainAspectRatio: false
+                }
+            });
 
-  </div>
-</main>
+            deptChart = new Chart(document.getElementById('deptChart'), {
+                type: 'bar', data: { datasets: [{ backgroundColor: '#4a81d4', barThickness: 30 }] },
+                options: {
+                    plugins: { 
+                        legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.raw + '건' } },
+                        datalabels: { anchor: 'end', align: 'top', color: '#333', font: { weight: 'bold' } }
+                    },
+                    scales: { x: { grid: { display: false } }, y: { beginAtZero: true, max: 100, display: false } }, maintainAspectRatio: false
+                }
+            });
 
-<footer class="footer">
-       <img class="logo-img" src="img/logo.png" alt="TERAROSA" />
-  <div class="footer-text">
-    교육&서비스 소식지<br/>
-    © 2026 TERAROSA Education Service Team
-  </div>
-</footer>
+            const pieOptions = {
+                cutout: '35%', layout: { padding: 0 }, 
+                plugins: { 
+                    legend: { display: true, position: 'bottom', labels: { boxWidth: 12, padding: 15, font: { size: 13 } } },
+                    tooltip: { callbacks: { label: ctx => ' ' + ctx.label + ': ' + ctx.raw + '% (' + ctx.dataset.counts[ctx.dataIndex].toLocaleString() + '건)' } },
+                    datalabels: { color: '#fff', font: { size: 16, weight: 'bold' }, textAlign: 'center', formatter: v => v < 5 ? null : v + '%' }
+                }, maintainAspectRatio: false
+            };
 
+            onlinePieChart = new Chart(document.getElementById('onlinePieChart'), { type: 'doughnut', data: { datasets: [{}] }, options: pieOptions, plugins: [legendMarginPlugin] });
+            storePieChart = new Chart(document.getElementById('storePieChart'), { type: 'doughnut', data: { datasets: [{}] }, options: pieOptions, plugins: [legendMarginPlugin] });
+
+            new Chart(document.getElementById('monthlyTrendChart'), {
+                type: 'line',
+                data: {
+                    labels: ['1월', '2월', '3월', '4월', '5월'],
+                    datasets: [
+                        { type: 'line', label: '점당 클레임 건수', data: [0.20, 0.16, 0.45, 0.32, 0.32], borderColor: '#1c3664', backgroundColor: '#1c3664', borderWidth: 3, tension: 0, yAxisID: 'y1', order: 1, datalabels: { anchor: 'start', align: 'bottom', color: '#1c3664', font: { weight: 'bold' }, offset: 5 } },
+                        { type: 'line', label: '클레임', data: [45, 37, 35, 31, 21], borderColor: '#4a81d4', backgroundColor: '#4a81d4', borderWidth: 3, tension: 0, yAxisID: 'y', order: 2, datalabels: { anchor: 'end', align: 'top', color: '#4a81d4', font: { weight: 'bold' }, offset: 5 } },
+                        { type: 'bar', label: '이물질 건수', data: [45, 69, 33, 27, 23], backgroundColor: '#dcdde1', barThickness: 40, yAxisID: 'y', order: 3, datalabels: { anchor: 'end', align: 'bottom', color: '#333', font: { weight: 'bold' } } }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, layout: { padding: { top: 20 } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '건' } } }, scales: { x: { display: false }, y: { type: 'linear', display: true, position: 'left', max: 80, grid: { borderDash: [5, 5] } }, y1: { type: 'linear', display: true, position: 'right', max: 0.50, min: 0, grid: { drawOnChartArea: false } } } }
+            });
+
+            updateDashboard(document.getElementById('monthSelector').value);
+        };
+
+        document.getElementById('monthSelector').addEventListener('change', function(e) {
+            updateDashboard(e.target.value);
+        });
+
+        function updateDashboard(monthKey) {
+            const data = dashboardData[monthKey]; 
+            if (!data) return;
+
+            document.getElementById('title-month').innerText = data.titleMonth;
+            document.getElementById('kpi-total').innerText = data.kpi.totalVoc + '건';
+            document.getElementById('kpi-general').innerText = data.kpi.general + '건';
+            document.getElementById('kpi-claim').innerText = data.kpi.claim + '건';
+            
+            document.getElementById('kpi-online').innerText = data.kpi.online + '건';
+            const onlineYoy = document.getElementById('kpi-online-yoy');
+            onlineYoy.innerText = data.kpi.onlineYoy;
+            onlineYoy.style.color = data.kpi.onlineYoyColor;
+
+            document.getElementById('kpi-store').innerText = data.kpi.store + '건';
+            const storeYoy = document.getElementById('kpi-store-yoy');
+            storeYoy.innerText = data.kpi.storeYoy;
+            storeYoy.style.color = data.kpi.storeYoyColor;
+
+            document.getElementById('kpi-hq').innerText = data.kpi.hq;
+
+            const mtdTotal = document.getElementById('mtd-total');
+            if (data.kpi.mtdTotalText) { mtdTotal.style.display = 'block'; mtdTotal.innerHTML = data.kpi.mtdTotalText; } 
+            else { mtdTotal.style.display = 'none'; }
+
+            const mtdOnline = document.getElementById('mtd-online');
+            if (data.kpi.mtdOnlineText) { mtdOnline.style.display = 'block'; mtdOnline.innerHTML = data.kpi.mtdOnlineText; } 
+            else { mtdOnline.style.display = 'none'; }
+
+            const mtdStore = document.getElementById('mtd-store');
+            if (data.kpi.mtdStoreText) { mtdStore.style.display = 'block'; mtdStore.innerHTML = data.kpi.mtdStoreText; } 
+            else { mtdStore.style.display = 'none'; }
+
+            document.getElementById('dept-table-body').innerHTML = data.dept.tableHtml;
+
+            channelChart.data.labels = data.channel.labels;
+            channelChart.data.datasets[0].data = data.channel.data;
+            channelChart.data.datasets[0].counts = data.channel.counts;
+            channelChart.data.datasets[0].backgroundColor = data.channel.colors;
+            channelChart.update();
+
+            deptChart.data.labels = data.dept.labels;
+            deptChart.data.datasets[0].data = data.dept.data;
+            deptChart.update();
+
+            onlinePieChart.data.labels = data.onlinePie.labels;
+            onlinePieChart.data.datasets[0].data = data.onlinePie.data;
+            onlinePieChart.data.datasets[0].counts = data.onlinePie.counts;
+            onlinePieChart.data.datasets[0].backgroundColor = data.onlinePie.colors;
+            onlinePieChart.update();
+
+            storePieChart.data.labels = data.storePie.labels;
+            storePieChart.data.datasets[0].data = data.storePie.data;
+            storePieChart.data.datasets[0].counts = data.storePie.counts;
+            storePieChart.data.datasets[0].backgroundColor = data.storePie.colors;
+            storePieChart.update();
+        }
+    </script>
 </body>
 </html>
