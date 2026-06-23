@@ -11,6 +11,9 @@
     <script src="./data.js"></script>
 
     <style>
+        /* ===========================
+           BASE STYLES (PC)
+           =========================== */
         body { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; background-color: #f4f6f9; margin: 0; padding: 0; color: #333; }
         .header-wrapper { background-color: #fff; width: 100%; }
         .top-logo-area { padding: 15px 30px; }
@@ -22,7 +25,6 @@
 
         .dashboard-content { padding: 20px 30px; }
         
-        /* 💡 상단 안내 문구 박스 스타일 */
         .notice-box {
             background-color: #ffffff;
             border-left: 4px solid #CE0019;
@@ -66,6 +68,162 @@
         .bg-gray { background-color: #dcdde1; }
         .bg-blue { background-color: #4a81d4; }
         .bg-dark { background-color: #1c3664; }
+
+        /* 테이블 가로 스크롤 래퍼 */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 15px;
+        }
+        .table-responsive table {
+            margin-top: 0;
+            min-width: 420px; /* 테이블 최소 너비 보장 */
+        }
+        .table-responsive .monthly-table {
+            min-width: 360px;
+        }
+
+        /* ===========================
+           MOBILE RESPONSIVE (≤ 768px)
+           =========================== */
+        @media (max-width: 768px) {
+
+            /* --- 헤더 --- */
+            .top-logo-area {
+                padding: 10px 16px;
+            }
+            .title-banner {
+                padding: 18px 16px 14px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .title-banner h1 {
+                font-size: 18px;
+                margin: 0 0 4px 0;
+                line-height: 1.3;
+            }
+            .title-banner p {
+                font-size: 10px;
+                letter-spacing: 1.5px;
+            }
+            .month-select {
+                font-size: 14px;
+                padding: 7px 12px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* --- 레이아웃 --- */
+            .dashboard-content {
+                padding: 12px 14px;
+            }
+            .notice-box {
+                font-size: 12px;
+                padding: 10px 12px;
+                margin-bottom: 12px;
+                line-height: 1.6;
+            }
+
+            /* KPI 카드: 2×2 그리드 */
+            .dashboard-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin-bottom: 10px;
+            }
+
+            /* row-2: 단일 컬럼 */
+            .row-2 {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-bottom: 10px;
+            }
+
+            .row-3 {
+                gap: 10px;
+            }
+
+            /* --- 카드 --- */
+            .card {
+                padding: 12px 10px;
+            }
+            .card-title {
+                font-size: 13px;
+                margin-bottom: 10px;
+            }
+
+            /* --- KPI 수치 --- */
+            .kpi-value {
+                font-size: 22px;
+            }
+            .kpi-sub {
+                font-size: 11px;
+            }
+            .mtd-label {
+                font-size: 11px;
+                padding: 5px 8px;
+                margin-top: 8px;
+            }
+
+            /* --- 차트 높이 --- */
+            .chart-container {
+                height: 260px;
+            }
+            .chart-container-large {
+                height: 200px;
+            }
+
+            /* 월별 트렌드 차트 — 인라인 padding 오버라이드 */
+            .mobile-chart-wrapper {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            /* --- 테이블 --- */
+            .table-responsive {
+                margin-top: 10px;
+            }
+            table {
+                font-size: 11px;
+            }
+            table th, table td {
+                padding: 6px 5px;
+            }
+            .monthly-table th.row-header {
+                width: 105px;
+                font-size: 10px;
+            }
+            .monthly-table th.month-header {
+                font-size: 11px;
+            }
+
+            /* 채널 차트 카드 높이 보정 */
+            .channel-chart-body {
+                height: 130px !important;
+            }
+        }
+
+        /* ===========================
+           소형 폰 (≤ 420px) 추가 최적화
+           =========================== */
+        @media (max-width: 420px) {
+            /* KPI: 단일 컬럼 */
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+            .title-banner h1 {
+                font-size: 16px;
+            }
+            .kpi-value {
+                font-size: 20px;
+            }
+            .card-title {
+                font-size: 12px;
+            }
+            .notice-box {
+                font-size: 11px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -79,7 +237,7 @@
                 <h1 id="title-month">VOC 현황 . 2026년 5월</h1>
                 <p>EDUCATION & SERVICE TEAM</p>
             </div>
-            <div>
+            <div style="width: 100%; max-width: 200px;">
                 <select id="monthSelector" class="month-select">
                     <option value="5월" selected>2026년 5월</option>
                     <option value="4월">2026년 4월</option>
@@ -102,7 +260,7 @@
                 <div class="card-title">2026 Total VOC (YTD)</div>
                 <div class="card-body">
                     <div class="kpi-value" id="kpi-total">6,658건</div>
-                    <div class="kpi-sub" style="display: flex; justify-content: space-around; margin-top: 10px;">
+                    <div class="kpi-sub" style="display: flex; justify-content: space-around; margin-top: 10px; flex-wrap: wrap; gap: 4px;">
                         <span>일반(단순) <strong id="kpi-general">6,066건</strong></span>
                         <span>클레임 <strong id="kpi-claim">169건</strong></span>
                     </div>
@@ -128,7 +286,7 @@
             </div>
             <div class="card">
                 <div class="card-title">접수 채널별 비중 (YTD)</div>
-                <div class="card-body" style="height: 150px; position: relative;">
+                <div class="card-body channel-chart-body" style="height: 150px; position: relative;">
                     <canvas id="channelChart"></canvas>
                 </div>
             </div>
@@ -141,17 +299,20 @@
                     <div class="chart-container" style="height: 200px;">
                         <canvas id="deptChart"></canvas>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th style="width: 25%;">책임부서</th>
-                                <th style="width: 60%;">상세</th>
-                                <th style="width: 15%;">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody id="dept-table-body">
-                        </tbody>
-                    </table>
+                    <!-- 테이블 가로 스크롤 래퍼 추가 -->
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 25%;">책임부서</th>
+                                    <th style="width: 60%;">상세</th>
+                                    <th style="width: 15%;">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dept-table-body">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="card">
@@ -176,31 +337,35 @@
             <div class="card">
                 <div class="card-title" style="text-align: left;">[ 월별 클레임 현황 (2026년) ]</div>
                 <div class="card-body">
-                    <div class="chart-container-large" style="padding-left: 160px; padding-right: 20px; box-sizing: border-box;">
+                    <!-- mobile-chart-wrapper 클래스 추가로 모바일에서 인라인 패딩 오버라이드 -->
+                    <div class="chart-container-large mobile-chart-wrapper" style="padding-left: 160px; padding-right: 20px; box-sizing: border-box;">
                         <canvas id="monthlyTrendChart"></canvas>
                     </div>
-                    <table class="monthly-table">
-                        <thead>
-                            <tr>
-                                <th class="row-header" style="border: none;"></th>
-                                <th class="month-header">1월</th><th class="month-header">2월</th><th class="month-header">3월</th><th class="month-header">4월</th><th class="month-header">5월</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th class="row-header"><span class="legend-box bg-gray"></span>이물질 건수</th>
-                                <td>45</td><td>69</td><td>33</td><td>27</td><td>23</td>
-                            </tr>
-                            <tr>
-                                <th class="row-header"><span class="legend-line bg-blue"></span>클레임</th>
-                                <td>45</td><td>37</td><td>35</td><td>31</td><td>21</td>
-                            </tr>
-                            <tr>
-                                <th class="row-header"><span class="legend-line bg-dark"></span>점당 클레임 건수</th>
-                                <td>0.20</td><td>0.16</td><td>0.45</td><td>0.32</td><td>0.32</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!-- 테이블 가로 스크롤 래퍼 추가 -->
+                    <div class="table-responsive">
+                        <table class="monthly-table">
+                            <thead>
+                                <tr>
+                                    <th class="row-header" style="border: none;"></th>
+                                    <th class="month-header">1월</th><th class="month-header">2월</th><th class="month-header">3월</th><th class="month-header">4월</th><th class="month-header">5월</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th class="row-header"><span class="legend-box bg-gray"></span>이물질 건수</th>
+                                    <td>45</td><td>69</td><td>33</td><td>27</td><td>23</td>
+                                </tr>
+                                <tr>
+                                    <th class="row-header"><span class="legend-line bg-blue"></span>클레임</th>
+                                    <td>45</td><td>37</td><td>35</td><td>31</td><td>21</td>
+                                </tr>
+                                <tr>
+                                    <th class="row-header"><span class="legend-line bg-dark"></span>점당 클레임 건수</th>
+                                    <td>0.20</td><td>0.16</td><td>0.45</td><td>0.32</td><td>0.32</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -223,6 +388,11 @@
 
         let channelChart, deptChart, onlinePieChart, storePieChart;
 
+        // 모바일 여부 판단 헬퍼
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
         window.onload = function() {
             channelChart = new Chart(document.getElementById('channelChart'), {
                 type: 'bar', data: { datasets: [{ barThickness: 12 }] },
@@ -238,22 +408,30 @@
             });
 
             deptChart = new Chart(document.getElementById('deptChart'), {
-                type: 'bar', data: { datasets: [{ backgroundColor: '#4a81d4', barThickness: 30 }] },
+                type: 'bar', data: { datasets: [{ backgroundColor: '#4a81d4', barThickness: isMobile() ? 18 : 30 }] },
                 options: {
                     plugins: { 
                         legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.raw + '건' } },
-                        datalabels: { anchor: 'end', align: 'top', color: '#333', font: { weight: 'bold' } }
+                        datalabels: { anchor: 'end', align: 'top', color: '#333', font: { size: isMobile() ? 11 : 13, weight: 'bold' } }
                     },
-                    scales: { x: { grid: { display: false } }, y: { beginAtZero: true, max: 100, display: false } }, maintainAspectRatio: false
+                    scales: { x: { grid: { display: false }, ticks: { font: { size: isMobile() ? 10 : 12 } } }, y: { beginAtZero: true, max: 100, display: false } }, maintainAspectRatio: false
                 }
             });
 
             const pieOptions = {
                 cutout: '35%', layout: { padding: 0 }, 
                 plugins: { 
-                    legend: { display: true, position: 'bottom', labels: { boxWidth: 12, padding: 15, font: { size: 13 } } },
+                    legend: { 
+                        display: true, 
+                        position: 'bottom', 
+                        labels: { 
+                            boxWidth: isMobile() ? 10 : 12, 
+                            padding: isMobile() ? 8 : 15, 
+                            font: { size: isMobile() ? 11 : 13 } 
+                        } 
+                    },
                     tooltip: { callbacks: { label: ctx => ' ' + ctx.label + ': ' + ctx.raw + '% (' + ctx.dataset.counts[ctx.dataIndex].toLocaleString() + '건)' } },
-                    datalabels: { color: '#fff', font: { size: 16, weight: 'bold' }, textAlign: 'center', formatter: v => v < 5 ? null : v + '%' }
+                    datalabels: { color: '#fff', font: { size: isMobile() ? 12 : 16, weight: 'bold' }, textAlign: 'center', formatter: v => v < 5 ? null : v + '%' }
                 }, maintainAspectRatio: false
             };
 
@@ -265,12 +443,29 @@
                 data: {
                     labels: ['1월', '2월', '3월', '4월', '5월'],
                     datasets: [
-                        { type: 'line', label: '점당 클레임 건수', data: [0.20, 0.16, 0.45, 0.32, 0.32], borderColor: '#1c3664', backgroundColor: '#1c3664', borderWidth: 3, tension: 0, yAxisID: 'y1', order: 1, datalabels: { anchor: 'start', align: 'bottom', color: '#1c3664', font: { weight: 'bold' }, offset: 5 } },
-                        { type: 'line', label: '클레임', data: [45, 37, 35, 31, 21], borderColor: '#4a81d4', backgroundColor: '#4a81d4', borderWidth: 3, tension: 0, yAxisID: 'y', order: 2, datalabels: { anchor: 'end', align: 'top', color: '#4a81d4', font: { weight: 'bold' }, offset: 5 } },
-                        { type: 'bar', label: '이물질 건수', data: [45, 69, 33, 27, 23], backgroundColor: '#dcdde1', barThickness: 40, yAxisID: 'y', order: 3, datalabels: { anchor: 'end', align: 'bottom', color: '#333', font: { weight: 'bold' } } }
+                        { type: 'line', label: '점당 클레임 건수', data: [0.20, 0.16, 0.45, 0.32, 0.32], borderColor: '#1c3664', backgroundColor: '#1c3664', borderWidth: 3, tension: 0, yAxisID: 'y1', order: 1, datalabels: { anchor: 'start', align: 'bottom', color: '#1c3664', font: { size: isMobile() ? 10 : 12, weight: 'bold' }, offset: 5 } },
+                        { type: 'line', label: '클레임', data: [45, 37, 35, 31, 21], borderColor: '#4a81d4', backgroundColor: '#4a81d4', borderWidth: 3, tension: 0, yAxisID: 'y', order: 2, datalabels: { anchor: 'end', align: 'top', color: '#4a81d4', font: { size: isMobile() ? 10 : 12, weight: 'bold' }, offset: 5 } },
+                        { type: 'bar', label: '이물질 건수', data: [45, 69, 33, 27, 23], backgroundColor: '#dcdde1', barThickness: isMobile() ? 20 : 40, yAxisID: 'y', order: 3, datalabels: { anchor: 'end', align: 'bottom', color: '#333', font: { size: isMobile() ? 10 : 12, weight: 'bold' } } }
                     ]
                 },
-                options: { responsive: true, maintainAspectRatio: false, layout: { padding: { top: 20 } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '건' } } }, scales: { x: { display: false }, y: { type: 'linear', display: true, position: 'left', max: 80, grid: { borderDash: [5, 5] } }, y1: { type: 'linear', display: true, position: 'right', max: 0.50, min: 0, grid: { drawOnChartArea: false } } } }
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    layout: { padding: { top: 20 } }, 
+                    plugins: { 
+                        legend: { display: false }, 
+                        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '건' } } 
+                    }, 
+                    scales: { 
+                        x: { 
+                            display: isMobile() ? true : false,
+                            ticks: { font: { size: 11 } },
+                            grid: { display: false }
+                        }, 
+                        y: { type: 'linear', display: true, position: 'left', max: 80, grid: { borderDash: [5, 5] }, ticks: { font: { size: 11 } } }, 
+                        y1: { type: 'linear', display: true, position: 'right', max: 0.50, min: 0, grid: { drawOnChartArea: false }, ticks: { font: { size: 11 } } } 
+                    } 
+                }
             });
 
             updateDashboard(document.getElementById('monthSelector').value);
