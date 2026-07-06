@@ -76,7 +76,7 @@
         }
         .table-responsive table {
             margin-top: 0;
-            min-width: 420px; /* 테이블 최소 너비 보장 */
+            min-width: 420px;
         }
         .table-responsive .monthly-table {
             min-width: 360px;
@@ -206,7 +206,6 @@
            소형 폰 (≤ 420px) 추가 최적화
            =========================== */
         @media (max-width: 420px) {
-            /* KPI: 단일 컬럼 */
             .dashboard-container {
                 grid-template-columns: 1fr;
             }
@@ -229,7 +228,7 @@
 
     <div class="header-wrapper">
         <div class="top-logo-area">
-            <img src="./logo.png" alt="TERAROSA" style="height: 28px; width: auto; object-fit: contain; display: block;">
+            <img src="./logo.png" alt="TERAROSA" style="height: 28px; width: auto; object-fit: contain; display: block;" onerror="this.src='https://placehold.co/150x28/ffffff/000000?text=TERAROSA'">
         </div>
         <div class="title-banner">
             <div>
@@ -238,7 +237,6 @@
             </div>
             <div style="width: 100%; max-width: 200px;">
                 <select id="monthSelector" class="month-select">
-                    <!-- 💡 드롭다운 옵션에 6월이 추가되어 있습니다. -->
                     <option value="6월" selected>2026년 6월</option>
                     <option value="5월">2026년 5월</option>
                     <option value="4월">2026년 4월</option>
@@ -300,7 +298,6 @@
                     <div class="chart-container" style="height: 200px;">
                         <canvas id="deptChart"></canvas>
                     </div>
-                    <!-- 테이블 가로 스크롤 래퍼 추가 -->
                     <div class="table-responsive">
                         <table>
                             <thead>
@@ -338,11 +335,9 @@
             <div class="card">
                 <div class="card-title" style="text-align: left;">[ 월별 클레임 현황 (2026년) ]</div>
                 <div class="card-body">
-                    <!-- mobile-chart-wrapper 클래스 추가로 모바일에서 인라인 패딩 오버라이드 -->
                     <div class="chart-container-large mobile-chart-wrapper" style="padding-left: 160px; padding-right: 20px; box-sizing: border-box;">
                         <canvas id="monthlyTrendChart"></canvas>
                     </div>
-                    <!-- 테이블 가로 스크롤 래퍼 추가 -->
                     <div class="table-responsive">
                         <table class="monthly-table">
                             <thead>
@@ -351,7 +346,6 @@
                                     <th class="month-header">1월</th><th class="month-header">2월</th><th class="month-header">3월</th><th class="month-header">4월</th><th class="month-header">5월</th><th class="month-header">6월</th>
                                 </tr>
                             </thead>
-                            <!-- 💡 6월 데이터까지 완벽하게 채워진 테이블 바디 -->
                             <tbody>
                                 <tr>
                                     <th class="row-header"><span class="legend-box bg-gray"></span>이물질 건수</th>
@@ -374,7 +368,6 @@
     </div>
 
     <script>
-        // 💡 분리되어있던 dashboardData 객체를 내부에 통합하여 단일 파일로 구성
         const dashboardData = {
             "1월": {
                 titleMonth: "VOC 현황 . 2026년 1월",
@@ -383,7 +376,7 @@
                     onlineYoy: "YoY 0.0%", onlineYoyColor: "#555", 
                     store: "6", storeYoy: "▼ YoY -57.1% 감소", storeYoyColor: "#0056b3", 
                     hq: "*본사 클레임 1건",
-                    
+                    mtdTotalText: "", mtdOnlineText: "", mtdStoreText: ""
                 },
                 channel: {
                     labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [68.6, 22.8, 8.6, 0.0], counts: [1070, 356, 134, 0], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1']
@@ -520,7 +513,6 @@
                     labels: ['이용불편', '상품품질', '오제공(누락)', '불친절', '응대미흡', '대기불만', '음료이물', '원두품질'], data: [24, 18, 18, 13, 11, 7, 7, 2], counts: [11, 8, 8, 6, 5, 3, 3, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f', '#3498db', '#2ecc71', '#95a5a6']
                 }
             },
-            // 💡 6월 데이터 및 수정사항 반영 완료 (VOC 1,636건, 부서명 변경, 상세 내역)
             "6월": {
                 titleMonth: "VOC 현황 . 2026년 6월",
                 kpi: {
@@ -568,7 +560,6 @@
 
         let channelChart, deptChart, onlinePieChart, storePieChart;
 
-        // 모바일 여부 판단 헬퍼
         function isMobile() {
             return window.innerWidth <= 768;
         }
@@ -618,7 +609,6 @@
             onlinePieChart = new Chart(document.getElementById('onlinePieChart'), { type: 'doughnut', data: { datasets: [{}] }, options: pieOptions, plugins: [legendMarginPlugin] });
             storePieChart = new Chart(document.getElementById('storePieChart'), { type: 'doughnut', data: { datasets: [{}] }, options: pieOptions, plugins: [legendMarginPlugin] });
 
-            // 💡 월별 현황 차트 6월 데이터 바인딩 적용
             new Chart(document.getElementById('monthlyTrendChart'), {
                 type: 'line',
                 data: {
