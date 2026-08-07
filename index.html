@@ -832,7 +832,7 @@
 
             if (data.issues && data.issues.length > 0) {
                 issueContainer.style.display = 'block';
-                issueTitle.innerText = `🚨 [${monthKey} 주요 다발생 이슈]`;
+                issueTitle.innerText = `🚨 [ ${monthKey} 주요 다발생 이슈 ]`;
                 issueListUl.innerHTML = '';
                 data.issues.forEach(issue => {
                     const li = document.createElement('li');
