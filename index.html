@@ -620,7 +620,11 @@
                 storePie: {
                     labels: ['매장이용불편', '오제공(누락)', '상품품질(MD)', '불친절', '응대미흡', '대기불만', '음료이물', '고객피해', '베이커리이물', '원두품질'], data: [22.4, 19.0, 17.2, 13.8, 10.3, 6.9, 5.2, 1.7, 1.7, 1.7], counts: [13, 11, 10, 8, 6, 4, 3, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f', '#3498db', '#2ecc71', '#e74c3c', '#9b59b6', '#34495e']
                 },
-                issues: []
+                issues: [
+                    "드립백 사은품 누락 22건, 원두 오제공 5건 - 커피페스타 기간 집중 발생",
+                    "자사몰 시스템 불편 6건 - 옵션 선택·배송지 입력·적립금 오류 및 APP 오작동",
+                    "원두 품질 불만 4건 - 에스프레소 블렌드, 온두라스, 디카페인 품질 관련"
+                ]
             },
             // 💡 신규 7월 데이터 완벽 추가
             "7월": {
@@ -832,7 +836,7 @@
 
             if (data.issues && data.issues.length > 0) {
                 issueContainer.style.display = 'block';
-                issueTitle.innerText = `🚨 [ ${monthKey} 주요 다발생 이슈 ]`;
+                issueTitle.innerText = `🚨 [${monthKey} 주요 다발생 이슈]`;
                 issueListUl.innerHTML = '';
                 data.issues.forEach(issue => {
                     const li = document.createElement('li');
