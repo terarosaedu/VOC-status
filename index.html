@@ -16,7 +16,6 @@
         body { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; background-color: #f4f6f9; margin: 0; padding: 0; color: #333; }
         .header-wrapper { background-color: #fff; width: 100%; }
         
-        /* 💡 멀티 브랜드 로고 영역 스타일 (가시성 및 간격 강화) */
         .top-logo-area { padding: 16px 30px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
         .brand-logo-item { display: flex; align-items: center; }
         .logo-divider { width: 1px; height: 24px; background-color: #ddd; display: inline-block; }
@@ -42,38 +41,143 @@
             letter-spacing: -0.3px;
         }
 
-        /* 💡 추가된 다발생 이슈 박스 스타일 */
+        /* 💡 기존 고객 클레임 이슈 박스 (그리드형) */
         .issue-box {
-            border: 2px solid #CE0019;
+            border: 2px solid #231815;
             background-color: #fff;
-            padding: 20px;
+            padding: 25px;
             border-radius: 8px;
-            margin-top: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
         .issue-box h2 {
-            color: #CE0019;
-            font-size: 18px;
-            margin: 0 0 15px 0;
+            color: #231815;
+            font-size: 20px;
+            margin: 0 0 20px 0;
             font-weight: bold;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .issue-list {
+        .issue-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .issue-category-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 18px;
+            border-top: 4px solid #ccc;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .issue-category-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: -0.5px;
+        }
+        .issue-item-list {
             margin: 0;
-            padding-left: 20px;
-            font-size: 14px;
-            line-height: 1.8;
+            padding-left: 22px;
+            font-size: 13.5px;
+            line-height: 1.6;
             color: #444;
+            letter-spacing: -0.3px;
+        }
+        .issue-item-list li { margin-bottom: 8px; }
+        .issue-item-list li:last-child { margin-bottom: 0; }
+
+        /* 💡 빈 공간을 획기적으로 줄인 내부 품질 이슈 박스 (네이비 톤) */
+        .internal-issue-box {
+            border: 2px solid #1c3664;
+            background-color: #fff;
+            padding: 20px; /* 25px -> 20px로 다이어트 */
+            border-radius: 8px;
+            margin-top: 15px; /* 위쪽 여백 축소 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .internal-issue-box h2 {
+            color: #1c3664;
+            font-size: 18px; /* 사이즈 조정 */
+            margin: 0 0 12px 0; /* 하단 여백 축소 */
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .internal-summary {
+            background-color: #f8f9fa;
+            padding: 12px 15px; /* 박스 안 여백 축소 */
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 13.5px;
+            color: #333;
+            border-left: 4px solid #1c3664;
+            line-height: 1.5;
+            letter-spacing: -0.3px;
+        }
+        .internal-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .internal-list li {
+            margin-bottom: 8px; /* 리스트 간격 축소 */
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.5;
+        }
+        .internal-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .internal-badge {
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 8px; /* 배지 크기 콤팩트화 */
+            border-radius: 4px;
+            white-space: nowrap;
+            min-width: 50px;
+            text-align: center;
+            margin-top: 1px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .internal-text {
+            font-size: 13.5px;
+            color: #444;
+            flex: 1;
+            word-break: keep-all;
+            letter-spacing: -0.3px;
+        }
+
+        /* 💡 OEM 라벨 스타일 추가 (작고 세련된 뱃지 형태) */
+        .oem-badge {
+            display: inline-block;
+            background-color: #8792a1;
+            color: #fff;
+            font-size: 10.5px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 6px;
+            vertical-align: middle;
+            letter-spacing: 0.5px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
         .dashboard-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 15px; }
         .card { background: #fff; padding: 10px 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: flex-start; }
         
         .card-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; text-align: center; }
-        
-        /* 💡 수정된 부분: 카드 내 콘텐츠를 세로 중앙 정렬하여 위쪽 쏠림 현상 및 하단 공백 해소 */
         .card-body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
         
         .kpi-value { font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 5px; }
@@ -89,6 +193,7 @@
         .row-3 { display: grid; grid-template-columns: 1fr; gap: 15px; }
         .chart-container { position: relative; height: 320px; width: 100%; }
         .chart-container-large { position: relative; height: 350px; width: 100%; }
+        
         table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 15px; }
         table, th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
         th { background-color: #f9f9f9; font-weight: bold; }
@@ -102,190 +207,78 @@
         .bg-blue { background-color: #4a81d4; }
         .bg-dark { background-color: #1c3664; }
 
-        /* 테이블 가로 스크롤 래퍼 */
-        .table-responsive {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin-top: 15px;
-        }
-        .table-responsive table {
-            margin-top: 0;
-            min-width: 420px;
-        }
-        .table-responsive .monthly-table {
-            min-width: 400px; /* 7월 컬럼 추가를 위해 최소 너비 소폭 확대 */
-        }
+        .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 15px; }
+        .table-responsive table { margin-top: 0; min-width: 420px; }
+        .table-responsive .monthly-table { min-width: 400px; }
 
         /* ===========================
            MOBILE RESPONSIVE (≤ 768px)
            =========================== */
         @media (max-width: 768px) {
+            .top-logo-area { padding: 10px 16px; gap: 12px; }
+            .logo-divider { height: 18px; }
+            .title-banner { padding: 18px 16px 14px; flex-direction: column; align-items: flex-start; gap: 10px; }
+            .title-banner h1 { font-size: 18px; margin: 0 0 4px 0; line-height: 1.3; }
+            .title-banner p { font-size: 10px; letter-spacing: 1.5px; }
+            .month-select { font-size: 14px; padding: 7px 12px; width: 100%; box-sizing: border-box; }
 
-            /* --- 헤더 --- */
-            .top-logo-area {
-                padding: 10px 16px;
-                gap: 12px;
-            }
-            .logo-divider {
-                height: 18px;
-            }
-            .title-banner {
-                padding: 18px 16px 14px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-            .title-banner h1 {
-                font-size: 18px;
-                margin: 0 0 4px 0;
-                line-height: 1.3;
-            }
-            .title-banner p {
-                font-size: 10px;
-                letter-spacing: 1.5px;
-            }
-            .month-select {
-                font-size: 14px;
-                padding: 7px 12px;
-                width: 100%;
-                box-sizing: border-box;
-            }
+            .dashboard-content { padding: 12px 14px; }
+            .notice-box { font-size: 12px; padding: 10px 12px; margin-bottom: 12px; line-height: 1.6; }
 
-            /* --- 레이아웃 --- */
-            .dashboard-content {
-                padding: 12px 14px;
-            }
-            .notice-box {
-                font-size: 12px;
-                padding: 10px 12px;
-                margin-bottom: 12px;
-                line-height: 1.6;
-            }
+            /* 모바일 이슈 그리드 (클레임) */
+            .issue-box { padding: 15px 12px; }
+            .issue-box h2 { font-size: 15px; margin-bottom: 15px; }
+            .issue-grid { grid-template-columns: 1fr; gap: 12px; }
+            .issue-category-card { padding: 14px; }
+            .issue-category-title { font-size: 14px; margin-bottom: 10px; }
+            .issue-item-list { font-size: 12.5px; padding-left: 18px; }
 
-            /* 모바일 환경 다발생 이슈 스타일 */
-            .issue-box {
-                padding: 15px 12px;
-            }
-            .issue-box h2 {
-                font-size: 15px;
-                margin-bottom: 10px;
-            }
-            .issue-list {
-                font-size: 12px;
-            }
+            /* 모바일 이슈 박스 (내부 품질) */
+            .internal-issue-box { padding: 15px 12px; }
+            .internal-issue-box h2 { font-size: 15px; }
+            .internal-summary { font-size: 12px; padding: 10px; margin-bottom: 12px; }
+            .internal-list li { flex-direction: column; gap: 6px; padding-bottom: 10px; margin-bottom: 10px; }
+            .internal-badge { font-size: 11px; padding: 3px 6px; min-width: auto; margin-top: 0; }
+            .internal-text { font-size: 12.5px; }
 
-            /* KPI 카드: 2×2 그리드 */
-            .dashboard-container {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-                margin-bottom: 10px;
-            }
+            .dashboard-container { grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+            .row-2 { grid-template-columns: 1fr; gap: 10px; margin-bottom: 10px; }
+            .row-3 { gap: 10px; }
+            .card { padding: 12px 10px; }
+            .card-title { font-size: 13px; margin-bottom: 10px; }
+            .kpi-value { font-size: 22px; }
+            .kpi-sub { font-size: 11px; }
+            .mtd-label { font-size: 11px; padding: 5px 8px; margin-top: 8px; }
 
-            /* row-2: 단일 컬럼 */
-            .row-2 {
-                grid-template-columns: 1fr;
-                gap: 10px;
-                margin-bottom: 10px;
-            }
+            .chart-container { height: 260px; }
+            .chart-container-large { height: 200px; }
+            .mobile-chart-wrapper { padding-left: 0 !important; padding-right: 0 !important; }
 
-            .row-3 {
-                gap: 10px;
-            }
-
-            /* --- 카드 --- */
-            .card {
-                padding: 12px 10px;
-            }
-            .card-title {
-                font-size: 13px;
-                margin-bottom: 10px;
-            }
-
-            /* --- KPI 수치 --- */
-            .kpi-value {
-                font-size: 22px;
-            }
-            .kpi-sub {
-                font-size: 11px;
-            }
-            .mtd-label {
-                font-size: 11px;
-                padding: 5px 8px;
-                margin-top: 8px;
-            }
-
-            /* --- 차트 높이 --- */
-            .chart-container {
-                height: 260px;
-            }
-            .chart-container-large {
-                height: 200px;
-            }
-
-            /* 월별 트렌드 차트 — 인라인 padding 오버라이드 */
-            .mobile-chart-wrapper {
-                padding-left: 0 !important;
-                padding-right: 0 !important;
-            }
-
-            /* --- 테이블 --- */
-            .table-responsive {
-                margin-top: 10px;
-            }
-            table {
-                font-size: 11px;
-            }
-            table th, table td {
-                padding: 6px 5px;
-            }
-            .monthly-table th.row-header {
-                width: 105px;
-                font-size: 10px;
-            }
-            .monthly-table th.month-header {
-                font-size: 11px;
-            }
-
-            /* 채널 차트 카드 높이 보정 */
-            .channel-chart-body {
-                height: 130px !important;
-            }
+            .table-responsive { margin-top: 10px; }
+            table { font-size: 11px; }
+            table th, table td { padding: 6px 5px; }
+            .monthly-table th.row-header { width: 105px; font-size: 10px; }
+            .monthly-table th.month-header { font-size: 11px; }
+            .channel-chart-body { height: 130px !important; }
         }
 
-        /* ===========================
-           소형 폰 (≤ 420px) 추가 최적화
-           =========================== */
         @media (max-width: 420px) {
-            .dashboard-container {
-                grid-template-columns: 1fr;
-            }
-            .title-banner h1 {
-                font-size: 16px;
-            }
-            .kpi-value {
-                font-size: 20px;
-            }
-            .card-title {
-                font-size: 12px;
-            }
-            .notice-box {
-                font-size: 11px;
-            }
+            .dashboard-container { grid-template-columns: 1fr; }
+            .title-banner h1 { font-size: 16px; }
+            .kpi-value { font-size: 20px; }
+            .card-title { font-size: 12px; }
+            .notice-box { font-size: 11px; }
         }
     </style>
 </head>
 <body>
 
     <div class="header-wrapper">
-        <!-- 💡 테라로사와 알랭 뒤카스 로고 나란히 배치 (가시성 강화) -->
         <div class="top-logo-area">
             <div class="brand-logo-item">
                 <img src="./logo.png" alt="TERAROSA" style="height: 28px; width: auto; object-fit: contain; display: block;" onerror="this.src='https://placehold.co/130x28/ffffff/000000?text=TERAROSA'">
             </div>
-            
-            <!-- 브랜드 로고 사이 구분선 -->
             <div class="logo-divider"></div>
-
             <div class="brand-logo-item">
                 <img src="./alain-logo.png" alt="ALAIN DUCASSE CHOCOLAT" style="height: 32px; width: auto; object-fit: contain; display: block;" onerror="this.src='https://placehold.co/170x32/ffffff/5c2c16?text=ALAIN+DUCASSE'">
             </div>
@@ -293,13 +286,11 @@
 
         <div class="title-banner">
             <div>
-                <!-- 💡 타이틀 기본값을 7월로 변경 -->
                 <h1 id="title-month">VOC 현황 . 2026년 7월</h1>
                 <p>EDUCATION & SERVICE TEAM</p>
             </div>
             <div style="width: 100%; max-width: 200px;">
                 <select id="monthSelector" class="month-select">
-                    <!-- 💡 7월 옵션 추가 -->
                     <option value="7월" selected>2026년 7월</option>
                     <option value="6월">2026년 6월</option>
                     <option value="5월">2026년 5월</option>
@@ -406,7 +397,6 @@
                         <table class="monthly-table">
                             <thead>
                                 <tr>
-                                    <!-- 💡 7월 컬럼 추가 -->
                                     <th class="row-header" style="border: none;"></th>
                                     <th class="month-header">1월</th><th class="month-header">2월</th><th class="month-header">3월</th><th class="month-header">4월</th><th class="month-header">5월</th><th class="month-header">6월</th><th class="month-header">7월</th>
                                 </tr>
@@ -431,14 +421,29 @@
             </div>
         </div>
 
-        <!-- 💡 다발생 이슈 섹션 컨테이너 (데이터가 있을 때만 자바스크립트로 노출) -->
+        <!-- 💡 이달의 고객 클레임 이슈 섹션 -->
         <div id="issue-container" style="display: none;">
             <div class="issue-box">
-                <h2 id="issue-title">🚨 [7월 주요 다발생 이슈]</h2>
-                <ul class="issue-list" id="issue-list-ul">
+                <h2 id="issue-title">💡 [이달의 고객 클레임 이슈]</h2>
+                <div class="issue-grid" id="issue-grid">
+                    <!-- 자바스크립트에서 그리드 카드들이 주입됩니다. -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 💡 이달의 내부 품질 이슈 섹션 (신규) -->
+        <div id="internal-issue-container" style="display: none;">
+            <div class="internal-issue-box">
+                <h2 id="internal-issue-title">🛠️ [내부 품질 주요 이슈]</h2>
+                <div class="internal-summary" id="internal-summary">
+                    <!-- 자바스크립트에서 요약 텍스트가 주입됩니다. -->
+                </div>
+                <ul class="internal-list" id="internal-list-ul">
+                    <!-- 자바스크립트에서 뱃지형 리스트가 주입됩니다. -->
                 </ul>
             </div>
         </div>
+
     </div>
 
     <script>
@@ -449,8 +454,7 @@
                     totalVoc: "1,560", general: "1,387", claim: "45", online: "38",
                     onlineYoy: "YoY 0.0%", onlineYoyColor: "#555", 
                     store: "6", storeYoy: "▼ YoY -57.1% 감소", storeYoyColor: "#0056b3", 
-                    hq: "*본사 클레임 1건",
-                    mtdTotalText: "", mtdOnlineText: "", mtdStoreText: ""
+                    hq: "*본사 클레임 1건", mtdTotalText: "", mtdOnlineText: "", mtdStoreText: ""
                 },
                 channel: {
                     labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [68.6, 22.8, 8.6, 0.0], counts: [1070, 356, 134, 0], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1']
@@ -464,27 +468,20 @@
                         <tr><td>이커머스팀</td><td class="text-left">프로모션 1, 시스템오류 1</td><td><strong>2</strong></td></tr>
                     `
                 },
-                onlinePie: {
-                    labels: ['오제공(누락)', '상품품질', '배송불만', '시스템오류', '프로모션'], data: [76.3, 13.2, 5.3, 2.6, 2.6], counts: [29, 5, 2, 1, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#2ed573', '#eccc68']
-                },
-                storePie: {
-                    labels: ['상품품질(MD)', '매장이용불편', '불친절'], data: [50.0, 33.3, 16.7], counts: [3, 2, 1], colors: ['#1c3664', '#4a81d4', '#a4b0be']
-                },
-                issues: [] // 1월 이슈 없음
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '시스템오류', '프로모션'], data: [76.3, 13.2, 5.3, 2.6, 2.6], counts: [29, 5, 2, 1, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#2ed573', '#eccc68'] },
+                storePie: { labels: ['상품품질(MD)', '매장이용불편', '불친절'], data: [50.0, 33.3, 16.7], counts: [3, 2, 1], colors: ['#1c3664', '#4a81d4', '#a4b0be'] },
+                issues: []
             },
             "2월": {
                 titleMonth: "VOC 현황 . 2026년 2월",
                 kpi: {
                     totalVoc: "2,855", general: "2,549", claim: "82", online: "68",
                     onlineYoy: "▲ YoY +15.3% 증가", onlineYoyColor: "#CE0019",
-                    store: "11", storeYoy: "▼ YoY -35.3% 감소", storeYoyColor: "#0056b3",
-                    hq: "", 
+                    store: "11", storeYoy: "▼ YoY -35.3% 감소", storeYoyColor: "#0056b3", hq: "", 
                     mtdTotalText: "[MTD] VOC 1,295건<br><span style='font-size: 11px; font-weight: normal; color: #555;'>(일반 1,162건 / 클레임 37건)</span><br><span style='font-size: 11px; font-weight: normal; color: #555;'>*본사 클레임 2건</span>",
                     mtdOnlineText: "[MTD] 30건", mtdStoreText: "[MTD] 5건"
                 },
-                channel: {
-                    labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.1, 20.6, 10.3, 0.0], counts: [1867, 279, 278, 0], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1']
-                },
+                channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.1, 20.6, 10.3, 0.0], counts: [1867, 279, 278, 0], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
                     labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [59, 14, 9, 2],
                     tableHtml: `
@@ -494,12 +491,8 @@
                         <tr><td>이커머스팀</td><td class="text-left">프로모션 1, 시스템오류 1</td><td><strong>2</strong></td></tr>
                     `
                 },
-                onlinePie: {
-                    labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션'], data: [65.3, 15.3, 15.3, 1.4, 1.4, 1.4], counts: [47, 11, 11, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68']
-                },
-                storePie: {
-                    labels: ['매장이용불편', '불친절', '상품품질(MD)', '오제공(누락)', '응대미흡'], data: [25.0, 25.0, 25.0, 16.7, 8.3], counts: [3, 3, 3, 2, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f']
-                },
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션'], data: [65.3, 15.3, 15.3, 1.4, 1.4, 1.4], counts: [47, 11, 11, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68'] },
+                storePie: { labels: ['매장이용불편', '불친절', '상품품질(MD)', '오제공(누락)', '응대미흡'], data: [25.0, 25.0, 25.0, 16.7, 8.3], counts: [3, 3, 3, 2, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f'] },
                 issues: []
             },
             "3월": {
@@ -507,14 +500,11 @@
                 kpi: {
                     totalVoc: "4,129", general: "3,704", claim: "117", online: "89",
                     onlineYoy: "▲ YoY +4.7% 증가", onlineYoyColor: "#CE0019",
-                    store: "25", storeYoy: "▼ YoY -3.8% 감소", storeYoyColor: "#0056b3",
-                    hq: "", 
+                    store: "25", storeYoy: "▼ YoY -3.8% 감소", storeYoyColor: "#0056b3", hq: "", 
                     mtdTotalText: "[MTD] VOC 1,274건<br><span style='font-size: 11px; font-weight: normal; color: #555;'>(일반 1,155건 / 클레임 35건)</span>",
                     mtdOnlineText: "[MTD] 21건", mtdStoreText: "[MTD] 14건"
                 },
-                channel: {
-                    labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.7, 20.1, 10.1, 0.1], counts: [2758, 797, 401, 3], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1']
-                },
+                channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.7, 20.1, 10.1, 0.1], counts: [2758, 797, 401, 3], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
                     labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [65, 27, 20, 2],
                     tableHtml: `
@@ -524,12 +514,8 @@
                         <tr><td>이커머스팀</td><td class="text-left">프로모션 1, 시스템오류 1</td><td><strong>2</strong></td></tr>
                     `
                 },
-                onlinePie: {
-                    labels: ['오제공(누락)', '상품품질', '배송불만', '시스템오류', '프로모션', '원두품질', '이물질'], data: [57.3, 24.7, 13.5, 1.1, 1.1, 1.1, 1.1], counts: [51, 22, 12, 1, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#2ed573', '#eccc68', '#7bed9f', '#ff7f50']
-                },
-                storePie: {
-                    labels: ['매장이용불편', '상품품질(MD)', '응대미흡', '불친절', '오제공(누락)', '음료이물', '대기불만'], data: [24.0, 20.0, 16.0, 12.0, 12.0, 8.0, 8.0], counts: [6, 5, 4, 3, 3, 2, 2], colors: ['#4a81d4', '#1c3664', '#f1c40f', '#a4b0be', '#f39c12', '#2ecc71', '#3498db']
-                },
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '시스템오류', '프로모션', '원두품질', '이물질'], data: [57.3, 24.7, 13.5, 1.1, 1.1, 1.1, 1.1], counts: [51, 22, 12, 1, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#2ed573', '#eccc68', '#7bed9f', '#ff7f50'] },
+                storePie: { labels: ['매장이용불편', '상품품질(MD)', '응대미흡', '불친절', '오제공(누락)', '음료이물', '대기불만'], data: [24.0, 20.0, 16.0, 12.0, 12.0, 8.0, 8.0], counts: [6, 5, 4, 3, 3, 2, 2], colors: ['#4a81d4', '#1c3664', '#f1c40f', '#a4b0be', '#f39c12', '#2ecc71', '#3498db'] },
                 issues: []
             },
             "4월": {
@@ -537,14 +523,11 @@
                 kpi: {
                     totalVoc: "5,433", general: "4,898", claim: "148", online: "110",
                     onlineYoy: "▼ YoY -17.3% 감소", onlineYoyColor: "#0056b3",
-                    store: "35", storeYoy: "▼ YoY -23.9% 감소", storeYoyColor: "#0056b3",
-                    hq: "", 
+                    store: "35", storeYoy: "▼ YoY -23.9% 감소", storeYoyColor: "#0056b3", hq: "", 
                     mtdTotalText: "[MTD] VOC 1,304건<br><span style='font-size: 11px; font-weight: normal; color: #555;'>(일반 1,194건 / 클레임 31건)</span>",
                     mtdOnlineText: "[MTD] 21건", mtdStoreText: "[MTD] 10건"
                 },
-                channel: {
-                    labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.4, 20.0, 10.6, 0.1], counts: [3642, 1047, 554, 4], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1']
-                },
+                channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.4, 20.0, 10.6, 0.1], counts: [3642, 1047, 554, 4], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
                     labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [78, 36, 27, 4],
                     tableHtml: `
@@ -554,12 +537,8 @@
                         <tr><td>이커머스팀</td><td class="text-left">프로모션 1, 시스템오류 1</td><td><strong>4</strong></td></tr>
                     `
                 },
-                onlinePie: {
-                    labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션', '이물질'], data: [51.8, 25.5, 12.7, 5.5, 1.8, 1.8, 0.9], counts: [57, 28, 14, 6, 2, 2, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68', '#ff7f50']
-                },
-                storePie: {
-                    labels: ['매장이용불편', '상품품질(MD)', '오제공(누락)', '응대미흡', '불친절', '대기불만', '음료이물'], data: [22.9, 22.9, 17.1, 11.4, 11.4, 8.6, 5.7], counts: [8, 8, 6, 4, 4, 3, 2], colors: ['#4a81d4', '#1c3664', '#f39c12', '#f1c40f', '#a4b0be', '#3498db', '#2ecc71']
-                },
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션', '이물질'], data: [51.8, 25.5, 12.7, 5.5, 1.8, 1.8, 0.9], counts: [57, 28, 14, 6, 2, 2, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68', '#ff7f50'] },
+                storePie: { labels: ['매장이용불편', '상품품질(MD)', '오제공(누락)', '응대미흡', '불친절', '대기불만', '음료이물'], data: [22.9, 22.9, 17.1, 11.4, 11.4, 8.6, 5.7], counts: [8, 8, 6, 4, 4, 3, 2], colors: ['#4a81d4', '#1c3664', '#f39c12', '#f1c40f', '#a4b0be', '#3498db', '#2ecc71'] },
                 issues: []
             },
             "5월": {
@@ -567,14 +546,11 @@
                 kpi: {
                     totalVoc: "6,658", general: "6,066", claim: "169", online: "121",
                     onlineYoy: "▼ YoY -21.9% 감소", onlineYoyColor: "#0056b3",
-                    store: "45", storeYoy: "▼ YoY -29.7% 감소", storeYoyColor: "#0056b3",
-                    hq: "",
+                    store: "45", storeYoy: "▼ YoY -29.7% 감소", storeYoyColor: "#0056b3", hq: "",
                     mtdTotalText: "[MTD] VOC 1,225건<br><span style='font-size: 11px; font-weight: normal; color: #555;'>(일반 1,168건 / 클레임 21건)</span>",
                     mtdOnlineText: "[MTD] 11건", mtdStoreText: "[MTD] 10건"
                 },
-                channel: {
-                    labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [70.2, 19.3, 10.5, 0.1], counts: [4529, 1243, 675, 5], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1']
-                },
+                channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [70.2, 19.3, 10.5, 0.1], counts: [4529, 1243, 675, 5], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
                     labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [85, 37, 36, 8],
                     tableHtml: `
@@ -584,12 +560,8 @@
                         <tr><td>이커머스팀</td><td class="text-left">프로모션 3, 시스템오류 3, 이용불편 2</td><td><strong>8</strong></td></tr>
                     `
                 },
-                onlinePie: {
-                    labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션', '이용불편', '원두이물'], data: [50, 24, 12, 6, 3, 2, 2, 1], counts: [61, 29, 15, 7, 3, 3, 2, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68', '#ffa502', '#ff7f50']
-                },
-                storePie: {
-                    labels: ['이용불편', '상품품질', '오제공(누락)', '불친절', '응대미흡', '대기불만', '음료이물', '원두품질'], data: [24, 18, 18, 13, 11, 7, 7, 2], counts: [11, 8, 8, 6, 5, 3, 3, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f', '#3498db', '#2ecc71', '#95a5a6']
-                },
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션', '이용불편', '원두이물'], data: [50, 24, 12, 6, 3, 2, 2, 1], counts: [61, 29, 15, 7, 3, 3, 2, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68', '#ffa502', '#ff7f50'] },
+                storePie: { labels: ['이용불편', '상품품질', '오제공(누락)', '불친절', '응대미흡', '대기불만', '음료이물', '원두품질'], data: [24, 18, 18, 13, 11, 7, 7, 2], counts: [11, 8, 8, 6, 5, 3, 3, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f', '#3498db', '#2ecc71', '#95a5a6'] },
                 issues: []
             },
             "6월": {
@@ -597,14 +569,11 @@
                 kpi: {
                     totalVoc: "8,294", general: "7,511", claim: "226", online: "165",
                     onlineYoy: "▼ YoY -31.0% 감소", onlineYoyColor: "#0056b3",
-                    store: "58", storeYoy: "▼ YoY -24.7% 감소", storeYoyColor: "#0056b3",
-                    hq: "",
+                    store: "58", storeYoy: "▼ YoY -24.7% 감소", storeYoyColor: "#0056b3", hq: "",
                     mtdTotalText: "[MTD] VOC 1,636건<br><span style='font-size: 11px; font-weight: normal; color: #555;'>(일반 1,445건 / 클레임 57건)</span>",
                     mtdOnlineText: "[MTD] 44건", mtdStoreText: "[MTD] 13건"
                 },
-                channel: {
-                    labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.1, 19.7, 11.1, 0.1], counts: [5585, 1595, 896, 6], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1']
-                },
+                channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.1, 19.7, 11.1, 0.1], counts: [5585, 1595, 896, 6], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
                     labels: ['생산팀', '구매전략팀', '영업팀', '이커머스팀&IT팀'], data: [118, 43, 47, 15],
                     tableHtml: `
@@ -614,34 +583,38 @@
                         <tr><td>이커머스팀&IT팀</td><td class="text-left">시스템오류 9, 프로모션 4, 사이트이용불편 2</td><td><strong>15</strong></td></tr>
                     `
                 },
-                onlinePie: {
-                    labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션', '원두이물', '이용불편'], data: [53.3, 20.0, 9.7, 6.7, 5.5, 2.4, 1.2, 1.2], counts: [88, 33, 16, 11, 9, 4, 2, 2], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68', '#ff7f50', '#f39c12']
-                },
-                storePie: {
-                    labels: ['매장이용불편', '오제공(누락)', '상품품질(MD)', '불친절', '응대미흡', '대기불만', '음료이물', '고객피해', '베이커리이물', '원두품질'], data: [22.4, 19.0, 17.2, 13.8, 10.3, 6.9, 5.2, 1.7, 1.7, 1.7], counts: [13, 11, 10, 8, 6, 4, 3, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f', '#3498db', '#2ecc71', '#e74c3c', '#9b59b6', '#34495e']
-                },
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션', '원두이물', '이용불편'], data: [53.3, 20.0, 9.7, 6.7, 5.5, 2.4, 1.2, 1.2], counts: [88, 33, 16, 11, 9, 4, 2, 2], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68', '#ff7f50', '#f39c12'] },
+                storePie: { labels: ['매장이용불편', '오제공(누락)', '상품품질(MD)', '불친절', '응대미흡', '대기불만', '음료이물', '고객피해', '베이커리이물', '원두품질'], data: [22.4, 19.0, 17.2, 13.8, 10.3, 6.9, 5.2, 1.7, 1.7, 1.7], counts: [13, 11, 10, 8, 6, 4, 3, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f', '#3498db', '#2ecc71', '#e74c3c', '#9b59b6', '#34495e'] },
+                
+                // 💡 6월 고객 클레임 이슈 (그리드 레이아웃, 배열 순서 최적화 완료)
                 issues: [
-                    "드립백 사은품 누락 22건, 원두 오제공 5건 - 커피페스타 기간 집중 발생",
-                    "자사몰 시스템 불편 6건 - 옵션 선택·배송지 입력·적립금 오류 및 APP 오작동",
-                    "원두 품질 불만 4건 - 에스프레소 블렌드, 온두라스, 디카페인 품질 관련"
-                ]
+                    { category: "다발생", icon: "🚨", color: "#CE0019", items: [ "드립백 사은품 누락 22건 · 원두 오제공 5건 ※ 커피페스타 기간", "시스템 이용 불편 6건 (옵션 선택 2 · 쿠폰 1 · 배송지 1 · 적립금 1 · APP 오작동 1)", "원두 품질 불만 4건 (에스프레소 블렌드 맛·기름기 2 · 온두라스 로스팅일자별 품질 차이 1 · 디카페인 원두 신선도 1)" ] },
+                    { category: "점포 서비스", icon: "🏪", color: "#2980b9", items: [ "오제공·누락 4건 (사천해변점 케이크 누락 · 신세계스타필드하남점 오결제 · 경포호수점 베이커리 누락 · 포스코센터점 베이커리 누락)", "불친절 2건 (IFC몰점 주문 응대 · 서귀포점 직원 응대)", "응대 미흡 2건 (본점 대기시간 사전 안내 · 예술의전당점 고객 요청사항 안내)", "이용 불편 1건 (수영점 의자 소음)" ] },
+                    { category: "품질·안전", icon: "🛡️", color: "#d35400", items: [ "상품 품질 불만 6건 (미르 텀블러 불량 3 · 아이스크림 녹음 1 · 파우더 커피 뭉침 1 · 밤식빵 시큼함 1)", "이물 2건 (원두 종이테이프 1 · 서종점 팥앙금빵 호두껍질 1)", "안전 1건 (수영점 스탠드 미세 감전)" ] },
+                    { category: "기타", icon: "📌", color: "#7f8c8d", items: [ "배송상품 파손 1건 · 드립백 증정 조건 불만 1건" ] }
+                ],
+
+                // 💡 신규 6월 내부 품질 주요 이슈 데이터 세팅 (다이어트 적용)
+                internalIssues: {
+                    summary: "<strong>■ 6월 누계 234건 · 1,629개</strong> <span style='color:#1c3664; font-weight:600;'>(품질 122건·1,586개 | 이물 14건·17개 | 파손,변형 33건·184개 | 식품안전 8건·52개 | 오·미입고 57건·188개)</span><br><span style='color: #666; font-size: 12.5px; display: inline-block; margin-top: 5px;'>※ 점포 사전 발견 이슈 기준이며, 아래는 다발생 및 식품안전 등 주요 관리 이슈를 선별하여 기재</span>",
+                    items: [
+                        { category: "이물", text: "<span class='oem-badge'>OEM</span>마들렌(비정형 이물) 6건·9개 / 퀸아망(머리카락) 3건·3개 / 올리브치아바타(비정형 이물) 1건·1개 / 얼그레이파운드(머리카락) 1건·1개 / 피칸파이(머리카락) 1건·1개 / 고다치즈캉파뉴(머리카락) 1건·1개 / 고다치즈휠(곰팡이) 1건·1개", color: "#e74c3c" },
+                        { category: "품질 불량", text: "<span class='oem-badge'>OEM</span>바닐라빈 크로핀(규격불량) 49건·949개 / 마들렌 38건·90개(상태불량26건·72개 / 규격4건·6개 / 파손8건·12개) / 아이스크림 녹아서 입고 4건·120개 / 피칸파이(파손) 7건·19개   집중 발생", color: "#f39c12" },
+                        { category: "식품 안전", text: "소비기한 임박 3건, 한글표시사항 누락·훼손 3건, 선입선출 미준수 2건", color: "#9b59b6" }
+                    ]
+                }
             },
-            // 💡 신규 7월 데이터 완벽 추가
             "7월": {
                 titleMonth: "VOC 현황 . 2026년 7월",
                 kpi: {
                     totalVoc: "9,623", general: "8,642", claim: "291", online: "220",
                     onlineYoy: "▼ YoY -17.6% 감소", onlineYoyColor: "#0056b3",
-                    store: "66", storeYoy: "▼ YoY -24.1% 감소", storeYoyColor: "#0056b3",
-                    hq: "",
+                    store: "66", storeYoy: "▼ YoY -24.1% 감소", storeYoyColor: "#0056b3", hq: "",
                     mtdTotalText: "[MTD] VOC 1,330건<br><span style='font-size: 11px; font-weight: normal; color: #555;'>(일반 1,131건 / 클레임 65건)</span>",
                     mtdOnlineText: "[MTD] 55건", mtdStoreText: "[MTD] 8건"
                 },
-                channel: {
-                    labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.7, 19.2, 11.0, 0.1], counts: [6549, 1799, 1036, 7], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1']
-                },
+                channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.7, 19.2, 11.0, 0.1], counts: [6549, 1799, 1036, 7], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
-                    // 💡 알랭뒤카스운영팀 신규 부서 추가
                     labels: ['생산팀', '구매전략팀', '영업팀', '이커머스팀&IT팀', '알랭뒤카스운영팀'], data: [149, 52, 53, 32, 2],
                     tableHtml: `
                         <tr><td>생산팀</td><td class="text-left">오제공(누락) 103, 배송불만 21, 원두품질 21, 원두이물 3</td><td><strong>149</strong></td></tr>
@@ -651,12 +624,8 @@
                         <tr><td>알랭뒤카스운영팀</td><td class="text-left">초콜릿 오제공 2</td><td><strong>2</strong></td></tr>
                     `
                 },
-                onlinePie: {
-                    labels: ['오제공(누락)', '상품품질', '시스템오류', '배송불만', '원두품질', '프로모션', '이용불편', '원두이물'], data: [47, 18, 11, 10, 10, 2, 1, 1], counts: [103, 40, 24, 21, 21, 5, 3, 3], colors: ['#4a81d4', '#1c3664', '#2ed573', '#a4b0be', '#7bed9f', '#eccc68', '#ffa502', '#ff7f50']
-                },
-                storePie: {
-                    labels: ['매장이용불편', '오제공(누락)', '상품품질(MD)', '불친절', '응대미흡', '대기불만', '음료이물', '고객피해', '베이커리이물', '점포위생', '원두품질'], data: [23, 20, 18, 14, 9, 6, 5, 1, 1, 1, 1], counts: [15, 13, 12, 9, 6, 4, 3, 1, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f', '#3498db', '#2ecc71', '#e74c3c', '#9b59b6', '#34495e', '#7f8c8d']
-                },
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '시스템오류', '배송불만', '원두품질', '프로모션', '이용불편', '원두이물'], data: [47, 18, 11, 10, 10, 2, 1, 1], counts: [103, 40, 24, 21, 21, 5, 3, 3], colors: ['#4a81d4', '#1c3664', '#2ed573', '#a4b0be', '#7bed9f', '#eccc68', '#ffa502', '#ff7f50'] },
+                storePie: { labels: ['매장이용불편', '오제공(누락)', '상품품질(MD)', '불친절', '응대미흡', '대기불만', '음료이물', '고객피해', '베이커리이물', '점포위생', '원두품질'], data: [23, 20, 18, 14, 9, 6, 5, 1, 1, 1, 1], counts: [15, 13, 12, 9, 6, 4, 3, 1, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f', '#3498db', '#2ecc71', '#e74c3c', '#9b59b6', '#34495e', '#7f8c8d'] },
                 issues: [
                     "에코백(쇼핑백) 누락 12건 발생",
                     "코스타리카 원두 향미 불만 8건 발생 - 발효취 관련 VOC 집중",
@@ -675,7 +644,7 @@
                 const originalFit = chart.legend.fit;
                 chart.legend.fit = function fit() {
                     originalFit.bind(chart.legend)();
-                    this.height += 20; 
+                    this.height = isMobile() ? 100 : 120; // 💡 범례 높이 고정
                 }
             }
         };
@@ -711,29 +680,18 @@
                 }
             });
 
-            // 💡 여기부터 수정! 범례와 패딩을 고정하여 차트 크기를 통일합니다.
             const pieOptions = {
-                cutout: '35%', 
-                layout: { padding: 10 }, // 💡 바깥 여백을 일정하게 고정하여 크기 강제 일치 유도
+                cutout: '35%', layout: { padding: 0 }, 
                 plugins: { 
-                    legend: { 
-                        display: true, 
-                        position: 'bottom', 
-                        labels: { 
-                            boxWidth: isMobile() ? 10 : 12, 
-                            padding: isMobile() ? 8 : 15, 
-                            font: { size: isMobile() ? 11 : 13 } 
-                        } 
-                    },
+                    legend: { display: true, position: 'bottom', labels: { boxWidth: isMobile() ? 10 : 12, padding: isMobile() ? 8 : 15, font: { size: isMobile() ? 11 : 13 } } },
                     tooltip: { callbacks: { label: ctx => ' ' + ctx.label + ': ' + ctx.raw + '% (' + ctx.dataset.counts[ctx.dataIndex].toLocaleString() + '건)' } },
                     datalabels: { color: '#fff', font: { size: isMobile() ? 12 : 16, weight: 'bold' }, textAlign: 'center', formatter: v => v < 5 ? null : v + '%' }
-                }, maintainAspectRatio: false, aspectRatio: 1 // 💡 비율을 1:1로 고정
+                }, maintainAspectRatio: false
             };
 
             onlinePieChart = new Chart(document.getElementById('onlinePieChart'), { type: 'doughnut', data: { datasets: [{}] }, options: pieOptions, plugins: [legendMarginPlugin] });
             storePieChart = new Chart(document.getElementById('storePieChart'), { type: 'doughnut', data: { datasets: [{}] }, options: pieOptions, plugins: [legendMarginPlugin] });
 
-            // 💡 월별 현황 그래프 7월 확장 및 데이터 바인딩
             new Chart(document.getElementById('monthlyTrendChart'), {
                 type: 'line',
                 data: {
@@ -745,19 +703,10 @@
                     ]
                 },
                 options: { 
-                    responsive: true, 
-                    maintainAspectRatio: false, 
-                    layout: { padding: { top: 20 } }, 
-                    plugins: { 
-                        legend: { display: false }, 
-                        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '건' } } 
-                    }, 
+                    responsive: true, maintainAspectRatio: false, layout: { padding: { top: 20 } }, 
+                    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '건' } } }, 
                     scales: { 
-                        x: { 
-                            display: isMobile() ? true : false,
-                            ticks: { font: { size: 11 } },
-                            grid: { display: false }
-                        }, 
+                        x: { display: isMobile() ? true : false, ticks: { font: { size: 11 } }, grid: { display: false } }, 
                         y: { type: 'linear', display: true, position: 'left', max: 80, grid: { borderDash: [5, 5] }, ticks: { font: { size: 11 } } }, 
                         y1: { type: 'linear', display: true, position: 'right', max: 0.50, min: 0, grid: { drawOnChartArea: false }, ticks: { font: { size: 11 } } } 
                     } 
@@ -812,7 +761,6 @@
             channelChart.data.datasets[0].backgroundColor = data.channel.colors;
             channelChart.update();
 
-            // 부서별 차트 동적 업데이트 (막대 색상 고정)
             deptChart.data.labels = data.dept.labels;
             deptChart.data.datasets[0].data = data.dept.data;
             deptChart.update();
@@ -829,22 +777,71 @@
             storePieChart.data.datasets[0].backgroundColor = data.storePie.colors;
             storePieChart.update();
 
-            // 💡 주요 다발생 이슈 업데이트 로직
+            // 💡 고객 클레임 이슈 업데이트 로직
             const issueContainer = document.getElementById('issue-container');
-            const issueListUl = document.getElementById('issue-list-ul');
             const issueTitle = document.getElementById('issue-title');
+            const issueGrid = document.getElementById('issue-grid');
 
             if (data.issues && data.issues.length > 0) {
                 issueContainer.style.display = 'block';
-                issueTitle.innerText = `🚨 [${monthKey} 주요 다발생 이슈]`;
-                issueListUl.innerHTML = '';
-                data.issues.forEach(issue => {
+                issueTitle.innerText = `🚨 [${monthKey} 이달의 고객 클레임 이슈]`;
+                issueGrid.innerHTML = '';
+                
+                // 7월 데이터(문자열 배열)와 6월 데이터(객체 배열-그리드형) 완벽 호환 처리
+                if (typeof data.issues[0] === 'string') {
+                    const ul = document.createElement('ul');
+                    ul.className = 'issue-item-list';
+                    data.issues.forEach(issue => {
+                        const li = document.createElement('li');
+                        li.innerText = issue;
+                        ul.appendChild(li);
+                    });
+                    const card = document.createElement('div');
+                    card.className = 'issue-category-card';
+                    card.style.gridColumn = '1 / -1'; 
+                    card.appendChild(ul);
+                    issueGrid.appendChild(card);
+                } else {
+                    data.issues.forEach(group => {
+                        const card = document.createElement('div');
+                        card.className = 'issue-category-card';
+                        card.style.borderTopColor = group.color;
+                        const itemsHtml = group.items.map(item => `<li>${item}</li>`).join('');
+                        card.innerHTML = `
+                            <div class="issue-category-title" style="color: ${group.color}">
+                                <span>${group.icon}</span> ${group.category}
+                            </div>
+                            <ul class="issue-item-list">${itemsHtml}</ul>
+                        `;
+                        issueGrid.appendChild(card);
+                    });
+                }
+            } else {
+                issueContainer.style.display = 'none';
+            }
+
+            // 💡 내부 품질 주요 이슈 업데이트 로직 (다이어트 적용 버전)
+            const internalContainer = document.getElementById('internal-issue-container');
+            const internalSummary = document.getElementById('internal-summary');
+            const internalListUl = document.getElementById('internal-list-ul');
+            const internalTitle = document.getElementById('internal-issue-title');
+
+            if (data.internalIssues) {
+                internalContainer.style.display = 'block';
+                internalTitle.innerText = `🛠️ [ ${monthKey} 내부 품질 주요 이슈 ]`;
+                internalSummary.innerHTML = data.internalIssues.summary;
+                internalListUl.innerHTML = '';
+                
+                data.internalIssues.items.forEach(item => {
                     const li = document.createElement('li');
-                    li.innerText = issue;
-                    issueListUl.appendChild(li);
+                    li.innerHTML = `
+                        <div class="internal-badge" style="background-color: ${item.color}">${item.category}</div>
+                        <div class="internal-text">${item.text}</div>
+                    `;
+                    internalListUl.appendChild(li);
                 });
             } else {
-                issueContainer.style.display = 'none'; // 데이터가 없으면 깔끔하게 숨김 처리
+                internalContainer.style.display = 'none';
             }
         }
     </script>
