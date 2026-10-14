@@ -29,178 +29,54 @@
         .dashboard-content { padding: 20px 30px; }
         
         .notice-box {
-            background-color: #ffffff;
-            border-left: 4px solid #CE0019;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            font-size: 14px;
-            color: #444;
-            line-height: 1.5;
-            letter-spacing: -0.3px;
+            background-color: #ffffff; border-left: 4px solid #CE0019; padding: 15px 20px;
+            margin-bottom: 20px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 14px; color: #444; line-height: 1.5; letter-spacing: -0.3px;
         }
 
-        /* 💡 고객 클레임 이슈 박스 (그리드형) */
-        .issue-box {
-            border: 2px solid #231815;
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 8px;
-            margin-top: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .issue-box h2 {
-            color: #231815;
-            font-size: 20px;
-            margin: 0 0 20px 0;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .issue-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .issue-category-card {
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 18px;
-            border-top: 4px solid #ccc;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-        }
-        .issue-category-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            letter-spacing: -0.5px;
-        }
-        .issue-item-list {
-            margin: 0;
-            padding-left: 22px;
-            font-size: 13.5px;
-            line-height: 1.6;
-            color: #444;
-            letter-spacing: -0.3px;
-        }
-        .issue-item-list li { margin-bottom: 8px; }
-        .issue-item-list li:last-child { margin-bottom: 0; }
-
-        /* 💡 내부 품질 이슈 박스 (네이비 톤) */
-        .internal-issue-box {
-            border: 2px solid #1c3664;
-            background-color: #fff;
-            padding: 20px; 
-            border-radius: 8px;
-            margin-top: 15px; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .internal-issue-box h2 {
-            color: #1c3664;
-            font-size: 18px; 
-            margin: 0 0 12px 0; 
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .internal-summary {
-            background-color: #f8f9fa;
-            padding: 12px 15px; 
-            border-radius: 6px;
-            margin-bottom: 15px;
-            font-size: 13.5px;
-            color: #333;
-            border-left: 4px solid #1c3664;
-            line-height: 1.5;
-            letter-spacing: -0.3px;
-        }
-        .internal-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .internal-list li {
-            margin-bottom: 8px; 
-            padding-bottom: 8px;
-            border-bottom: 1px dashed #eee;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            line-height: 1.5;
-        }
-        .internal-list li:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-        .internal-badge {
-            color: #fff;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 4px 8px; 
-            border-radius: 4px;
-            white-space: nowrap;
-            min-width: 50px;
-            text-align: center;
-            margin-top: 1px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-        .internal-text {
-            font-size: 13.5px;
-            color: #444;
-            flex: 1;
-            word-break: keep-all;
-            letter-spacing: -0.3px;
-        }
-
-        /* 💡 OEM 라벨 스타일 */
-        .oem-badge {
-            display: inline-block;
-            background-color: #8792a1;
-            color: #fff;
-            font-size: 10.5px;
-            font-weight: 600;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-right: 6px;
-            vertical-align: middle;
-            letter-spacing: 0.5px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-
-        /* 🚨 핵심 레이아웃 패치: minmax(0, 1fr) 적용으로 그리드 프레임 이탈 현상 완벽 방지 */
-        .dashboard-container { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; margin-bottom: 15px; }
-        .row-2 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; margin-bottom: 15px; }
-        .row-3 { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        /* 💡 동적 KPI 그리드 레이아웃 (ADCP 유무에 따른 4단/5단 전환) */
+        .dashboard-container { display: grid; gap: 15px; margin-bottom: 15px; }
+        .grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
         
-        /* 🚨 핵심 자식요소 패치: min-width: 0 적용으로 내부 팽창 방지 */
-        .card { background: #fff; padding: 10px 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: flex-start; min-width: 0; }
+        .row-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; margin-bottom: 15px; }
+        .row-3 { display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 15px; }
+        
+        .card { background: #fff; padding: 18px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: flex-start; min-width: 0; border: 1px solid #eaeaea; }
         .card-body { flex: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+        .card-title { font-size: 17px; font-weight: bold; margin-bottom: 20px; color: #111; display: flex; justify-content: space-between; align-items: center; }
         
-        .card-title { font-size: 16px; font-weight: bold; margin-bottom: 15px; text-align: center; }
-        
-        .kpi-value { font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 5px; }
-        .kpi-sub { font-size: 14px; text-align: center; color: #555; }
-        
-        .mtd-label {
-            font-size: 13px; color: #4a81d4; background-color: #eaf1fa; 
-            padding: 6px; border-radius: 4px; margin-top: 12px; 
-            text-align: center; font-weight: bold;
-        }
+        .kpi-value { font-size: 32px; font-weight: bold; text-align: center; margin-bottom: 8px; color: #231815; }
+        .kpi-sub { font-size: 13px; text-align: center; color: #555; }
+        .mtd-label { font-size: 12px; color: #4a81d4; background-color: #eaf1fa; padding: 6px; border-radius: 4px; margin-top: 12px; text-align: center; font-weight: bold; }
 
         .chart-container { position: relative; height: 320px; width: 100%; min-width: 0; }
         .chart-container-large { position: relative; height: 350px; width: 100%; min-width: 0; }
         
+        /* 💡 책임부서별 바 차트 커스텀 CSS */
+        .custom-bar-wrap { display: flex; flex-direction: column; gap: 18px; width: 100%; justify-content: center; height: 100%; padding: 10px 0; }
+        .custom-bar-row { display: flex; align-items: center; width: 100%; gap: 15px; }
+        .custom-bar-label { width: 100px; font-size: 14.5px; font-weight: 600; color: #222; flex-shrink: 0; }
+        .custom-bar-track { flex: 1; background-color: #eef2f5; border-radius: 4px; height: 22px; position: relative; overflow: hidden; box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); }
+        .custom-bar-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
+        .custom-bar-val-area { width: 80px; display: flex; align-items: baseline; justify-content: flex-end; gap: 6px; flex-shrink: 0; }
+        .custom-bar-value { font-size: 18px; font-weight: 800; color: #111; }
+        .custom-bar-percent { font-size: 12px; color: #888; font-weight: 500; }
+
+        /* 💡 주요 발생 유형 카드 */
+        .dept-type-list { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+        .dept-type-card { background-color: #fcfcfc; border: 1px solid #eaeaea; border-left: 5px solid; border-radius: 6px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+        .dept-type-header { font-size: 14.5px; margin-bottom: 6px; display: flex; align-items: center; }
+        .dept-type-desc { font-size: 13px; color: #555; line-height: 1.5; word-break: keep-all; letter-spacing: -0.3px; }
+        
+        /* 💡 관리 포인트 배너 */
+        .management-point-banner { background-color: #eaf1fa; border-radius: 6px; padding: 14px 20px; font-size: 14px; color: #1c3664; display: flex; align-items: center; gap: 12px; margin-top: 20px; font-weight: 600; letter-spacing: -0.3px; border: 1px solid #dce6f2; }
+        .mp-badge { background-color: #1c3664; color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; flex-shrink: 0; }
+
+        /* 월별 추이 테이블 */
         table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 15px; }
         table, th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
         th { background-color: #f9f9f9; font-weight: bold; }
-        .text-left { text-align: left; }
         .monthly-table { margin-top: 0; border-top: none; table-layout: fixed; }
         .monthly-table th.row-header { width: 160px; background-color: #fff; text-align: left; white-space: nowrap; font-weight: normal; }
         .monthly-table th.month-header { background-color: #fff; font-weight: bold; }
@@ -209,10 +85,28 @@
         .bg-gray { background-color: #dcdde1; }
         .bg-blue { background-color: #4a81d4; }
         .bg-dark { background-color: #1c3664; }
-
         .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 15px; width: 100%; }
-        .table-responsive table { margin-top: 0; min-width: 420px; }
-        .table-responsive .monthly-table { min-width: 440px; }
+        .table-responsive table { margin-top: 0; min-width: 480px; }
+
+        /* 고객 / 내부 품질 이슈 박스 */
+        .issue-box { border: 2px solid #231815; background-color: #fff; padding: 25px; border-radius: 8px; margin-top: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .issue-box h2 { color: #231815; font-size: 20px; margin: 0 0 20px 0; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+        .issue-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .issue-category-card { background-color: #f8f9fa; border-radius: 8px; padding: 18px; border-top: 4px solid #ccc; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+        .issue-category-title { font-size: 16px; font-weight: bold; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; letter-spacing: -0.5px; }
+        .issue-item-list { margin: 0; padding-left: 22px; font-size: 13.5px; line-height: 1.6; color: #444; letter-spacing: -0.3px; }
+        .issue-item-list li { margin-bottom: 8px; }
+        .issue-item-list li:last-child { margin-bottom: 0; }
+
+        .internal-issue-box { border: 2px solid #1c3664; background-color: #fff; padding: 20px; border-radius: 8px; margin-top: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .internal-issue-box h2 { color: #1c3664; font-size: 18px; margin: 0 0 12px 0; font-weight: bold; display: flex; align-items: center; gap: 8px; }
+        .internal-summary { background-color: #f8f9fa; padding: 12px 15px; border-radius: 6px; margin-bottom: 15px; font-size: 13.5px; color: #333; border-left: 4px solid #1c3664; line-height: 1.5; letter-spacing: -0.3px; }
+        .internal-list { list-style: none; padding: 0; margin: 0; }
+        .internal-list li { margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed #eee; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+        .internal-list li:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .internal-badge { color: #fff; font-size: 12px; font-weight: bold; padding: 4px 8px; border-radius: 4px; white-space: nowrap; min-width: 50px; text-align: center; margin-top: 1px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .internal-text { font-size: 13.5px; color: #444; flex: 1; word-break: keep-all; letter-spacing: -0.3px; }
+        .oem-badge { display: inline-block; background-color: #8792a1; color: #fff; font-size: 10.5px; font-weight: 600; padding: 2px 6px; border-radius: 4px; margin-right: 6px; vertical-align: middle; letter-spacing: 0.5px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 
         /* ===========================
            MOBILE RESPONSIVE (≤ 768px)
@@ -222,53 +116,25 @@
             .logo-divider { height: 18px; }
             .title-banner { padding: 18px 16px 14px; flex-direction: column; align-items: flex-start; gap: 10px; }
             .title-banner h1 { font-size: 18px; margin: 0 0 4px 0; line-height: 1.3; }
-            .title-banner p { font-size: 10px; letter-spacing: 1.5px; }
             .month-select { font-size: 14px; padding: 7px 12px; width: 100%; box-sizing: border-box; }
 
             .dashboard-content { padding: 12px 14px; }
-            .notice-box { font-size: 12px; padding: 10px 12px; margin-bottom: 12px; line-height: 1.6; }
+            .dashboard-container.grid-5, .dashboard-container.grid-4 { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .row-2 { grid-template-columns: 1fr; gap: 10px; }
+            
+            .custom-bar-label { width: 80px; font-size: 13px; }
+            .custom-bar-val-area { width: 60px; }
+            .custom-bar-value { font-size: 16px; }
 
-            .issue-box { padding: 15px 12px; }
-            .issue-box h2 { font-size: 15px; margin-bottom: 15px; }
             .issue-grid { grid-template-columns: 1fr; gap: 12px; }
-            .issue-category-card { padding: 14px; }
-            .issue-category-title { font-size: 14px; margin-bottom: 10px; }
-            .issue-item-list { font-size: 12.5px; padding-left: 18px; }
-
-            .internal-issue-box { padding: 15px 12px; }
-            .internal-issue-box h2 { font-size: 15px; }
-            .internal-summary { font-size: 12px; padding: 10px; margin-bottom: 12px; }
-            .internal-list li { flex-direction: column; gap: 6px; padding-bottom: 10px; margin-bottom: 10px; }
-            .internal-badge { font-size: 11px; padding: 3px 6px; min-width: auto; margin-top: 0; }
-            .internal-text { font-size: 12.5px; }
-
-            .dashboard-container { grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
-            .row-2 { grid-template-columns: 1fr; gap: 10px; margin-bottom: 10px; }
-            .row-3 { gap: 10px; }
-            .card { padding: 12px 10px; }
-            .card-title { font-size: 13px; margin-bottom: 10px; }
-            .kpi-value { font-size: 22px; }
-            .kpi-sub { font-size: 11px; }
-            .mtd-label { font-size: 11px; padding: 5px 8px; margin-top: 8px; }
-
             .chart-container { height: 260px; }
             .chart-container-large { height: 200px; }
             .mobile-chart-wrapper { padding-left: 0 !important; padding-right: 0 !important; }
-
-            .table-responsive { margin-top: 10px; }
-            table { font-size: 11px; }
-            table th, table td { padding: 6px 5px; }
-            .monthly-table th.row-header { width: 105px; font-size: 10px; }
-            .monthly-table th.month-header { font-size: 11px; }
             .channel-chart-body { height: 130px !important; }
         }
 
         @media (max-width: 420px) {
-            .dashboard-container { grid-template-columns: 1fr; }
-            .title-banner h1 { font-size: 16px; }
-            .kpi-value { font-size: 20px; }
-            .card-title { font-size: 12px; }
-            .notice-box { font-size: 11px; }
+            .dashboard-container.grid-5, .dashboard-container.grid-4 { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -287,13 +153,13 @@
 
         <div class="title-banner">
             <div>
-                <h1 id="title-month">VOC 현황 . 2026년 8월</h1>
+                <h1 id="title-month">VOC 현황 . 2026년 9월</h1>
                 <p>EDUCATION & SERVICE TEAM</p>
             </div>
             <div style="width: 100%; max-width: 200px;">
                 <select id="monthSelector" class="month-select">
-                    <!-- 💡 8월 옵션 추가 및 기본 선택 -->
-                    <option value="8월" selected>2026년 8월</option>
+                    <option value="9월" selected>2026년 9월</option>
+                    <option value="8월">2026년 8월</option>
                     <option value="7월">2026년 7월</option>
                     <option value="6월">2026년 6월</option>
                     <option value="5월">2026년 5월</option>
@@ -312,37 +178,41 @@
             각 책임부서는 주요 발생 이슈를 정기적으로 확인하고 원인 개선 및 재발 방지 활동에 활용해 주시기 바랍니다.
         </div>
 
-        <div class="dashboard-container">
+        <!-- 💡 동적 그리드 변환을 위한 컨테이너 (id="kpi-container" 추가) -->
+        <div class="dashboard-container grid-5" id="kpi-container">
             <div class="card">
-                <div class="card-title">2026 Total VOC (YTD)</div>
+                <div class="card-title" style="margin-bottom: 5px;">누적 클레임 (YTD)</div>
                 <div class="card-body">
-                    <div class="kpi-value" id="kpi-total">-건</div>
-                    <div class="kpi-sub" style="display: flex; justify-content: space-around; margin-top: 10px; flex-wrap: wrap; gap: 4px;">
-                        <span>일반(단순) <strong id="kpi-general">-건</strong></span>
-                        <span>클레임 <strong id="kpi-claim">-건</strong></span>
-                    </div>
-                    <div id="kpi-hq" style="font-size: 12px; color: #888; text-align: center; margin-top: 5px;"></div>
-                    <div id="mtd-total" class="mtd-label"></div>
+                    <div class="kpi-value" id="kpi-totalClaim">-건</div>
+                    <div id="mtd-claim" class="mtd-label" style="background-color: #f8f9fa; color: #333;">-</div>
                 </div>
             </div>
             <div class="card">
-                <div class="card-title">온라인 클레임 (YTD)</div>
+                <div class="card-title" style="margin-bottom: 5px;">온라인 클레임</div>
                 <div class="card-body">
                     <div class="kpi-value" id="kpi-online">-건</div>
                     <div class="kpi-sub" id="kpi-online-yoy">-</div>
-                    <div id="mtd-online" class="mtd-label"></div>
+                    <div id="mtd-online" class="mtd-label">-</div>
                 </div>
             </div>
             <div class="card">
-                <div class="card-title">점포 클레임 (YTD)</div>
+                <div class="card-title" style="margin-bottom: 5px;">점포 클레임</div>
                 <div class="card-body">
                     <div class="kpi-value" id="kpi-store">-건</div>
                     <div class="kpi-sub" id="kpi-store-yoy">-</div>
-                    <div id="mtd-store" class="mtd-label"></div>
+                    <div id="mtd-store" class="mtd-label">-</div>
+                </div>
+            </div>
+            <!-- 💡 ADCP 점포 클레임 (id="adcp-card" 추가, 1~6월엔 숨김) -->
+            <div class="card" id="adcp-card">
+                <div class="card-title" style="margin-bottom: 5px;">ADCP 점포 클레임</div>
+                <div class="card-body">
+                    <div class="kpi-value" id="kpi-adcp">-건</div>
+                    <div id="mtd-adcp" class="mtd-label">-</div>
                 </div>
             </div>
             <div class="card">
-                <div class="card-title">접수 채널별 비중 (YTD)</div>
+                <div class="card-title" style="margin-bottom: 5px;">누적 접수 채널 비중 (YTD)</div>
                 <div class="card-body channel-chart-body" style="height: 150px; position: relative;">
                     <canvas id="channelChart"></canvas>
                 </div>
@@ -352,37 +222,35 @@
         <div class="row-2">
             <div class="card">
                 <div class="card-title">책임부서별 클레임 현황 (YTD)</div>
-                <div class="card-body">
-                    <div class="chart-container" style="height: 200px;">
-                        <canvas id="deptChart"></canvas>
-                    </div>
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th style="width: 25%;">책임부서</th>
-                                    <th style="width: 60%;">상세</th>
-                                    <th style="width: 15%;">Total</th>
-                                </tr>
-                            </thead>
-                            <tbody id="dept-table-body">
-                            </tbody>
-                        </table>
+                <div class="card-body" style="justify-content: flex-start; padding-top: 10px;">
+                    <div class="custom-bar-wrap" id="custom-dept-chart-container">
                     </div>
                 </div>
             </div>
             <div class="card">
-                <div class="card-title">자사몰(판매처) 클레임 비중 (YTD)</div>
+                <div class="card-title">책임부서별 주요 클레임 유형</div>
+                <div class="card-body" style="justify-content: flex-start; padding-top: 10px;">
+                    <div class="dept-type-list" id="dept-types-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="management-point-container" style="display: none; margin-bottom: 15px;"></div>
+
+        <div class="row-2">
+            <div class="card">
+                <div class="card-title">온라인(자사몰) 클레임 유형별 비중</div>
                 <div class="card-body">
-                    <div class="chart-container" style="height: 450px;">
+                    <div class="chart-container" style="height: 380px;">
                         <canvas id="onlinePieChart"></canvas>
                     </div>
                 </div>
             </div>
             <div class="card">
-                <div class="card-title">점포 클레임 비중 (YTD)</div>
+                <div class="card-title">점포 클레임 유형별 비중</div>
                 <div class="card-body">
-                    <div class="chart-container" style="height: 450px;">
+                    <div class="chart-container" style="height: 380px;">
                         <canvas id="storePieChart"></canvas>
                     </div>
                 </div>
@@ -400,23 +268,22 @@
                         <table class="monthly-table">
                             <thead>
                                 <tr>
-                                    <!-- 💡 8월 컬럼 추가 -->
                                     <th class="row-header" style="border: none;"></th>
-                                    <th class="month-header">1월</th><th class="month-header">2월</th><th class="month-header">3월</th><th class="month-header">4월</th><th class="month-header">5월</th><th class="month-header">6월</th><th class="month-header">7월</th><th class="month-header">8월</th>
+                                    <th class="month-header">1월</th><th class="month-header">2월</th><th class="month-header">3월</th><th class="month-header">4월</th><th class="month-header">5월</th><th class="month-header">6월</th><th class="month-header">7월</th><th class="month-header">8월</th><th class="month-header">9월</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th class="row-header"><span class="legend-box bg-gray"></span>이물질 건수</th>
-                                    <td>45</td><td>69</td><td>33</td><td>27</td><td>23</td><td>16</td><td>24</td><td>19</td>
+                                    <td>45</td><td>69</td><td>33</td><td>27</td><td>23</td><td>16</td><td>24</td><td>19</td><td>13</td>
                                 </tr>
                                 <tr>
                                     <th class="row-header"><span class="legend-line bg-blue"></span>클레임</th>
-                                    <td>45</td><td>37</td><td>35</td><td>31</td><td>21</td><td>57</td><td>65</td><td>50</td>
+                                    <td>45</td><td>37</td><td>35</td><td>31</td><td>21</td><td>57</td><td>65</td><td>50</td><td>57</td>
                                 </tr>
                                 <tr>
                                     <th class="row-header"><span class="legend-line bg-dark"></span>점당 클레임 건수</th>
-                                    <td>0.20</td><td>0.16</td><td>0.45</td><td>0.32</td><td>0.32</td><td>0.42</td><td>0.26</td><td style="color:#aaa">-</td>
+                                    <td>0.20</td><td>0.16</td><td>0.45</td><td>0.32</td><td>0.32</td><td>0.42</td><td>0.26</td><td>0.65</td><td>0.56</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -428,162 +295,87 @@
         <div id="issue-container" style="display: none;">
             <div class="issue-box">
                 <h2 id="issue-title">💡 [이달의 고객 클레임 이슈]</h2>
-                <div class="issue-grid" id="issue-grid">
-                </div>
+                <div class="issue-grid" id="issue-grid"></div>
             </div>
         </div>
 
         <div id="internal-issue-container" style="display: none;">
             <div class="internal-issue-box">
                 <h2 id="internal-issue-title">🛠️ [내부 품질 주요 이슈]</h2>
-                <div class="internal-summary" id="internal-summary">
-                </div>
-                <ul class="internal-list" id="internal-list-ul">
-                </ul>
+                <div class="internal-summary" id="internal-summary"></div>
+                <ul class="internal-list" id="internal-list-ul"></ul>
             </div>
         </div>
-
+        
     </div>
 
     <script>
         const dashboardData = {
             "1월": {
                 titleMonth: "VOC 현황 . 2026년 1월",
-                kpi: {
-                    totalVoc: "1,560", general: "1,387", claim: "45", online: "38",
-                    onlineYoy: "YoY 0.0%", onlineYoyColor: "#555", 
-                    store: "6", storeYoy: "▼ YoY -57.1% 감소", storeYoyColor: "#0056b3", 
-                    hq: "*본사 클레임 1건", mtdTotalText: "", mtdOnlineText: "", mtdStoreText: ""
-                },
-                channel: {
-                    labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [68.6, 22.8, 8.6, 0.0], counts: [1070, 356, 134, 0], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1']
-                },
+                kpi: { totalClaim: "45", mtdClaimText: "-", online: "38", onlineYoy: "YoY 0.0%", onlineYoyColor: "#555", mtdOnlineText: "-", store: "6", storeYoy: "▼ YoY -57.1% 감소", storeYoyColor: "#0056b3", mtdStoreText: "-", adcp: "-", mtdAdcpText: "-" },
+                channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [68.6, 22.8, 8.6, 0.0], counts: [1070, 356, 134, 0], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
-                    labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [31, 8, 3, 2],
-                    tableHtml: `
-                        <tr><td>생산물류팀</td><td class="text-left">오제공(누락) 29, 배송불만 2</td><td><strong>31</strong></td></tr>
-                        <tr><td>구매전략팀</td><td class="text-left">상품품질 8</td><td><strong>8</strong></td></tr>
-                        <tr><td>영업팀</td><td class="text-left">이용불편 2, 불친절 1</td><td><strong>3</strong></td></tr>
-                        <tr><td>이커머스팀</td><td class="text-left">프로모션 1, 시스템오류 1</td><td><strong>2</strong></td></tr>
-                    `
+                    labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [31, 8, 3, 2], colors: ['#eb7a2b', '#3b5f9e', '#3b5f9e', '#3b5f9e'],
+                    details: ["오제공(누락) 29 · 배송불만 2", "상품품질 8", "이용불편 2 · 불친절 1", "프로모션 1 · 시스템오류 1"]
                 },
                 onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '시스템오류', '프로모션'], data: [76.3, 13.2, 5.3, 2.6, 2.6], counts: [29, 5, 2, 1, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#2ed573', '#eccc68'] },
-                storePie: { labels: ['상품품질(MD)', '매장이용불편', '불친절'], data: [50.0, 33.3, 16.7], counts: [3, 2, 1], colors: ['#1c3664', '#4a81d4', '#a4b0be'] },
-                issues: []
+                storePie: { labels: ['상품품질(MD)', '매장이용불편', '불친절'], data: [50.0, 33.3, 16.7], counts: [3, 2, 1], colors: ['#a4b0be', '#4a81d4', '#f1c40f'] }
             },
             "2월": {
                 titleMonth: "VOC 현황 . 2026년 2월",
-                kpi: {
-                    totalVoc: "2,855", general: "2,549", claim: "82", online: "68",
-                    onlineYoy: "▲ YoY +15.3% 증가", onlineYoyColor: "#CE0019",
-                    store: "11", storeYoy: "▼ YoY -35.3% 감소", storeYoyColor: "#0056b3", hq: "", 
-                    mtdTotalText: "[MTD] VOC 1,295건<br><span style='font-size: 11px; font-weight: normal; color: #555;'>(일반 1,162건 / 클레임 37건)</span><br><span style='font-size: 11px; font-weight: normal; color: #555;'>*본사 클레임 2건</span>",
-                    mtdOnlineText: "[MTD] 30건", mtdStoreText: "[MTD] 5건"
-                },
+                kpi: { totalClaim: "82", mtdClaimText: "[MTD] 클레임 37건", online: "68", onlineYoy: "▲ YoY +15.3% 증가", onlineYoyColor: "#CE0019", mtdOnlineText: "[MTD] 30건", store: "11", storeYoy: "▼ YoY -35.3% 감소", storeYoyColor: "#0056b3", mtdStoreText: "[MTD] 5건", adcp: "-", mtdAdcpText: "-" },
                 channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.1, 20.6, 10.3, 0.0], counts: [1867, 279, 278, 0], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
-                    labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [59, 14, 9, 2],
-                    tableHtml: `
-                        <tr><td>생산물류팀</td><td class="text-left">오제공(누락) 47, 배송불만 11, 원두품질 1</td><td><strong>59</strong></td></tr>
-                        <tr><td>구매전략팀</td><td class="text-left">상품품질 14</td><td><strong>14</strong></td></tr>
-                        <tr><td>영업팀</td><td class="text-left">매장이용불편 3, 불친절 3, 오제공(누락) 2, 응대미흡 1</td><td><strong>9</strong></td></tr>
-                        <tr><td>이커머스팀</td><td class="text-left">프로모션 1, 시스템오류 1</td><td><strong>2</strong></td></tr>
-                    `
+                    labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [59, 14, 9, 2], colors: ['#eb7a2b', '#3b5f9e', '#3b5f9e', '#3b5f9e'],
+                    details: ["오제공(누락) 47 · 배송불만 11 · 원두품질 1", "상품품질 14", "매장이용불편 3 · 불친절 3 · 오제공(누락) 2 · 응대미흡 1", "프로모션 1 · 시스템오류 1"]
                 },
                 onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션'], data: [65.3, 15.3, 15.3, 1.4, 1.4, 1.4], counts: [47, 11, 11, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68'] },
-                storePie: { labels: ['매장이용불편', '불친절', '상품품질(MD)', '오제공(누락)', '응대미흡'], data: [25.0, 25.0, 25.0, 16.7, 8.3], counts: [3, 3, 3, 2, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f'] },
-                issues: []
+                storePie: { labels: ['매장이용불편', '불친절', '상품품질(MD)', '오제공(누락)', '응대미흡'], data: [25.0, 25.0, 25.0, 16.7, 8.3], counts: [3, 3, 3, 2, 1], colors: ['#4a81d4', '#f1c40f', '#a4b0be', '#eb7a2b', '#3498db'] }
             },
             "3월": {
                 titleMonth: "VOC 현황 . 2026년 3월",
-                kpi: {
-                    totalVoc: "4,129", general: "3,704", claim: "117", online: "89",
-                    onlineYoy: "▲ YoY +4.7% 증가", onlineYoyColor: "#CE0019",
-                    store: "25", storeYoy: "▼ YoY -3.8% 감소", storeYoyColor: "#0056b3", hq: "", 
-                    mtdTotalText: "[MTD] VOC 1,274건<br><span style='font-size: 11px; font-weight: normal; color: #555;'>(일반 1,155건 / 클레임 35건)</span>",
-                    mtdOnlineText: "[MTD] 21건", mtdStoreText: "[MTD] 14건"
-                },
+                kpi: { totalClaim: "117", mtdClaimText: "[MTD] 클레임 35건", online: "89", onlineYoy: "▲ YoY +4.7% 증가", onlineYoyColor: "#CE0019", mtdOnlineText: "[MTD] 21건", store: "25", storeYoy: "▼ YoY -3.8% 감소", storeYoyColor: "#0056b3", mtdStoreText: "[MTD] 14건", adcp: "-", mtdAdcpText: "-" },
                 channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.7, 20.1, 10.1, 0.1], counts: [2758, 797, 401, 3], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
-                    labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [65, 27, 20, 2],
-                    tableHtml: `
-                        <tr><td>생산물류팀</td><td class="text-left">오제공(누락) 51, 배송불만 12, 원두품질 1, 시스템오류 1, 프로모션 1, TEA이물 1</td><td><strong>65</strong></td></tr>
-                        <tr><td>구매전략팀</td><td class="text-left">상품품질 27</td><td><strong>27</strong></td></tr>
-                        <tr><td>영업팀</td><td class="text-left">매장이용불편 6, 응대미흡 4, 불친절 3, 오제공(누락) 3, 음료이물 2, 대기불만 2</td><td><strong>20</strong></td></tr>
-                        <tr><td>이커머스팀</td><td class="text-left">프로모션 1, 시스템오류 1</td><td><strong>2</strong></td></tr>
-                    `
+                    labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [65, 27, 20, 2], colors: ['#eb7a2b', '#3b5f9e', '#3b5f9e', '#3b5f9e'],
+                    details: ["오제공(누락) 51 · 배송불만 12 · 원두품질 1 · 시스템오류 1 · 프로모션 1 · TEA이물 1", "상품품질 27", "매장이용불편 6 · 응대미흡 4 · 불친절 3 · 오제공(누락) 3 · 음료이물 2 · 대기불만 2", "프로모션 1 · 시스템오류 1"]
                 },
-                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '시스템오류', '프로모션', '원두품질', '이물질'], data: [57.3, 24.7, 13.5, 1.1, 1.1, 1.1, 1.1], counts: [51, 22, 12, 1, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#2ed573', '#eccc68', '#7bed9f', '#ff7f50'] },
-                storePie: { labels: ['매장이용불편', '상품품질(MD)', '응대미흡', '불친절', '오제공(누락)', '음료이물', '대기불만'], data: [24.0, 20.0, 16.0, 12.0, 12.0, 8.0, 8.0], counts: [6, 5, 4, 3, 3, 2, 2], colors: ['#4a81d4', '#1c3664', '#f1c40f', '#a4b0be', '#f39c12', '#2ecc71', '#3498db'] },
-                issues: []
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '시스템오류', '프로모션', '원두품질', '이물질'], data: [57.3, 24.7, 13.5, 1.1, 1.1, 1.1, 1.1], counts: [51, 22, 12, 1, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#2ed573', '#eccc68', '#7bed9f', '#e74c3c'] },
+                storePie: { labels: ['매장이용불편', '상품품질(MD)', '응대미흡', '불친절', '오제공(누락)', '음료이물', '대기불만'], data: [24.0, 20.0, 16.0, 12.0, 12.0, 8.0, 8.0], counts: [6, 5, 4, 3, 3, 2, 2], colors: ['#4a81d4', '#a4b0be', '#3498db', '#f1c40f', '#eb7a2b', '#2ecc71', '#9b59b6'] }
             },
             "4월": {
                 titleMonth: "VOC 현황 . 2026년 4월",
-                kpi: {
-                    totalVoc: "5,433", general: "4,898", claim: "148", online: "110",
-                    onlineYoy: "▼ YoY -17.3% 감소", onlineYoyColor: "#0056b3",
-                    store: "35", storeYoy: "▼ YoY -23.9% 감소", storeYoyColor: "#0056b3", hq: "", 
-                    mtdTotalText: "[MTD] VOC 1,304건<br><span style='font-size: 11px; font-weight: normal; color: #555;'>(일반 1,194건 / 클레임 31건)</span>",
-                    mtdOnlineText: "[MTD] 21건", mtdStoreText: "[MTD] 10건"
-                },
+                kpi: { totalClaim: "148", mtdClaimText: "[MTD] 클레임 31건", online: "110", onlineYoy: "▼ YoY -17.3% 감소", onlineYoyColor: "#0056b3", mtdOnlineText: "[MTD] 21건", store: "35", storeYoy: "▼ YoY -23.9% 감소", storeYoyColor: "#0056b3", mtdStoreText: "[MTD] 10건", adcp: "-", mtdAdcpText: "-" },
                 channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.4, 20.0, 10.6, 0.1], counts: [3642, 1047, 554, 4], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
-                    labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [78, 36, 27, 4],
-                    tableHtml: `
-                        <tr><td>생산물류팀</td><td class="text-left">오제공(누락) 57, 배송불만 14, 원두품질 6, TEA이물 1</td><td><strong>78</strong></td></tr>
-                        <tr><td>구매전략팀</td><td class="text-left">상품품질 36</td><td><strong>36</strong></td></tr>
-                        <tr><td>영업팀</td><td class="text-left">매장이용불편 8, 오제공(누락) 6, 응대미흡 4, 불친절 4, 대기불만 3, 음료이물 2</td><td><strong>27</strong></td></tr>
-                        <tr><td>이커머스팀</td><td class="text-left">프로모션 1, 시스템오류 1</td><td><strong>4</strong></td></tr>
-                    `
+                    labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [78, 36, 27, 4], colors: ['#eb7a2b', '#3b5f9e', '#3b5f9e', '#3b5f9e'],
+                    details: ["오제공(누락) 57 · 배송불만 14 · 원두품질 6 · TEA이물 1", "상품품질 36", "매장이용불편 8 · 오제공(누락) 6 · 응대미흡 4 · 불친절 4 · 대기불만 3 · 음료이물 2", "프로모션 1 · 시스템오류 1"]
                 },
-                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션', '이물질'], data: [51.8, 25.5, 12.7, 5.5, 1.8, 1.8, 0.9], counts: [57, 28, 14, 6, 2, 2, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68', '#ff7f50'] },
-                storePie: { labels: ['매장이용불편', '상품품질(MD)', '오제공(누락)', '응대미흡', '불친절', '대기불만', '음료이물'], data: [22.9, 22.9, 17.1, 11.4, 11.4, 8.6, 5.7], counts: [8, 8, 6, 4, 4, 3, 2], colors: ['#4a81d4', '#1c3664', '#f39c12', '#f1c40f', '#a4b0be', '#3498db', '#2ecc71'] },
-                issues: []
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션', '이물질'], data: [51.8, 25.5, 12.7, 5.5, 1.8, 1.8, 0.9], counts: [57, 28, 14, 6, 2, 2, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68', '#e74c3c'] },
+                storePie: { labels: ['매장이용불편', '상품품질(MD)', '오제공(누락)', '응대미흡', '불친절', '대기불만', '음료이물'], data: [22.9, 22.9, 17.1, 11.4, 11.4, 8.6, 5.7], counts: [8, 8, 6, 4, 4, 3, 2], colors: ['#4a81d4', '#a4b0be', '#eb7a2b', '#3498db', '#f1c40f', '#9b59b6', '#2ecc71'] }
             },
             "5월": {
                 titleMonth: "VOC 현황 . 2026년 5월",
-                kpi: {
-                    totalVoc: "6,658", general: "6,066", claim: "169", online: "121",
-                    onlineYoy: "▼ YoY -21.9% 감소", onlineYoyColor: "#0056b3",
-                    store: "45", storeYoy: "▼ YoY -29.7% 감소", storeYoyColor: "#0056b3", hq: "",
-                    mtdTotalText: "[MTD] VOC 1,225건<br><span style='font-size: 11px; font-weight: normal; color: #555;'>(일반 1,168건 / 클레임 21건)</span>",
-                    mtdOnlineText: "[MTD] 11건", mtdStoreText: "[MTD] 10건"
-                },
+                kpi: { totalClaim: "169", mtdClaimText: "[MTD] 클레임 21건", online: "121", onlineYoy: "▼ YoY -21.9% 감소", onlineYoyColor: "#0056b3", mtdOnlineText: "[MTD] 11건", store: "45", storeYoy: "▼ YoY -29.7% 감소", storeYoyColor: "#0056b3", mtdStoreText: "[MTD] 10건", adcp: "-", mtdAdcpText: "-" },
                 channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [70.2, 19.3, 10.5, 0.1], counts: [4529, 1243, 675, 5], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
-                    labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [85, 37, 36, 8],
-                    tableHtml: `
-                        <tr><td>생산물류팀</td><td class="text-left">오제공(누락) 59, 배송불만 15, 원두품질 8, 원두이물 3</td><td><strong>85</strong></td></tr>
-                        <tr><td>구매전략팀</td><td class="text-left">상품품질 37</td><td><strong>37</strong></td></tr>
-                        <tr><td>영업팀</td><td class="text-left">매장이용불편 10, 오제공 8, 불친절 6, 응대미흡 4, 대기불만 3, 음료이물 5</td><td><strong>36</strong></td></tr>
-                        <tr><td>이커머스팀</td><td class="text-left">프로모션 3, 시스템오류 3, 이용불편 2</td><td><strong>8</strong></td></tr>
-                    `
+                    labels: ['생산물류팀', '구매전략팀', '영업팀', '이커머스팀'], data: [85, 37, 36, 8], colors: ['#eb7a2b', '#3b5f9e', '#3b5f9e', '#3b5f9e'],
+                    details: ["오제공(누락) 59 · 배송불만 15 · 원두품질 8 · 원두이물 3", "상품품질 37", "매장이용불편 10 · 오제공 8 · 불친절 6 · 응대미흡 4 · 대기불만 3 · 음료이물 5", "프로모션 3 · 시스템오류 3 · 이용불편 2"]
                 },
-                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션', '이용불편', '원두이물'], data: [50, 24, 12, 6, 3, 2, 2, 1], counts: [61, 29, 15, 7, 3, 3, 2, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68', '#ffa502', '#ff7f50'] },
-                storePie: { labels: ['이용불편', '상품품질', '오제공(누락)', '불친절', '응대미흡', '대기불만', '음료이물', '원두품질'], data: [24, 18, 18, 13, 11, 7, 7, 2], counts: [11, 8, 8, 6, 5, 3, 3, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f', '#3498db', '#2ecc71', '#95a5a6'] },
-                issues: []
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션', '이용불편', '원두이물'], data: [50, 24, 12, 6, 3, 2, 2, 1], counts: [61, 29, 15, 7, 3, 3, 2, 1], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68', '#ffa502', '#e74c3c'] },
+                storePie: { labels: ['이용불편', '상품품질', '오제공(누락)', '불친절', '응대미흡', '대기불만', '음료이물', '원두품질'], data: [24, 18, 18, 13, 11, 7, 7, 2], counts: [11, 8, 8, 6, 5, 3, 3, 1], colors: ['#4a81d4', '#1c3664', '#eb7a2b', '#a4b0be', '#f1c40f', '#3498db', '#2ecc71', '#7f8c8d'] }
             },
             "6월": {
                 titleMonth: "VOC 현황 . 2026년 6월",
-                kpi: {
-                    totalVoc: "8,294", general: "7,511", claim: "226", online: "165",
-                    onlineYoy: "▼ YoY -31.0% 감소", onlineYoyColor: "#0056b3",
-                    store: "58", storeYoy: "▼ YoY -24.7% 감소", storeYoyColor: "#0056b3", hq: "",
-                    mtdTotalText: "[MTD] VOC 1,636건<br><span style='font-size: 11px; font-weight: normal; color: #555;'>(일반 1,445건 / 클레임 57건)</span>",
-                    mtdOnlineText: "[MTD] 44건", mtdStoreText: "[MTD] 13건"
-                },
+                kpi: { totalClaim: "226", mtdClaimText: "[MTD] 클레임 57건", online: "165", onlineYoy: "▼ YoY -31.0% 감소", onlineYoyColor: "#0056b3", mtdOnlineText: "[MTD] 44건", store: "58", storeYoy: "▼ YoY -24.7% 감소", storeYoyColor: "#0056b3", mtdStoreText: "[MTD] 13건", adcp: "-", mtdAdcpText: "-" },
                 channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.1, 19.7, 11.1, 0.1], counts: [5585, 1595, 896, 6], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
-                    labels: ['생산팀', '구매전략팀', '영업팀', '이커머스팀&IT팀'], data: [118, 43, 47, 15],
-                    tableHtml: `
-                        <tr><td>생산팀</td><td class="text-left">오제공(누락) 88, 배송불만 16, 원두품질 12, 원두이물 2</td><td><strong>118</strong></td></tr>
-                        <tr><td>구매전략팀</td><td class="text-left">상품품질 43</td><td><strong>43</strong></td></tr>
-                        <tr><td>영업팀</td><td class="text-left">이용불편 13, 오제공 11, 불친절 8, 응대미흡 6, 대기불만 4, 음료이물 3</td><td><strong>47</strong></td></tr>
-                        <tr><td>이커머스팀&IT팀</td><td class="text-left">시스템오류 9, 프로모션 4, 사이트이용불편 2</td><td><strong>15</strong></td></tr>
-                    `
+                    labels: ['생산팀', '구매전략팀', '영업팀', '이커머스팀&IT팀'], data: [118, 43, 47, 15], colors: ['#eb7a2b', '#3b5f9e', '#3b5f9e', '#3b5f9e'],
+                    details: ["오제공(누락) 88 · 배송불만 16 · 원두품질 12 · 원두이물 2", "상품품질 43", "이용불편 13 · 오제공 11 · 불친절 8 · 응대미흡 6 · 대기불만 4 · 음료이물 3", "시스템오류 9 · 프로모션 4 · 사이트이용불편 2"]
                 },
-                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션', '원두이물', '이용불편'], data: [53.3, 20.0, 9.7, 6.7, 5.5, 2.4, 1.2, 1.2], counts: [88, 33, 16, 11, 9, 4, 2, 2], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68', '#ff7f50', '#f39c12'] },
-                storePie: { labels: ['매장이용불편', '오제공(누락)', '상품품질(MD)', '불친절', '응대미흡', '대기불만', '음료이물', '고객피해', '베이커리이물', '원두품질'], data: [22.4, 19.0, 17.2, 13.8, 10.3, 6.9, 5.2, 1.7, 1.7, 1.7], counts: [13, 11, 10, 8, 6, 4, 3, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f', '#3498db', '#2ecc71', '#e74c3c', '#9b59b6', '#34495e'] },
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템오류', '프로모션', '원두이물', '이용불편'], data: [53.3, 20.0, 9.7, 6.7, 5.5, 2.4, 1.2, 1.2], counts: [88, 33, 16, 11, 9, 4, 2, 2], colors: ['#4a81d4', '#1c3664', '#a4b0be', '#7bed9f', '#2ed573', '#eccc68', '#e74c3c', '#e67e22'] },
+                storePie: { labels: ['매장이용불편', '오제공(누락)', '상품품질(MD)', '불친절', '응대미흡', '대기불만', '음료이물', '고객피해', '베이커리이물', '원두품질'], data: [22.4, 19.0, 17.2, 13.8, 10.3, 6.9, 5.2, 1.7, 1.7, 1.7], counts: [13, 11, 10, 8, 6, 4, 3, 1, 1, 1], colors: ['#4a81d4', '#eb7a2b', '#1c3664', '#f1c40f', '#3498db', '#9b59b6', '#2ecc71', '#e74c3c', '#34495e', '#7f8c8d'] },
                 
                 issues: [
                     { category: "다발생", icon: "🚨", color: "#CE0019", items: [ "드립백 사은품 누락 22건 · 원두 오제공 5건 ※ 커피페스타 기간", "시스템 이용 불편 6건 (옵션 선택 2 · 쿠폰 1 · 배송지 1 · 적립금 1 · APP 오작동 1)", "원두 품질 불만 4건 (에스프레소 블렌드 맛·기름기 2 · 온두라스 로스팅일자별 품질 차이 1 · 디카페인 원두 신선도 1)" ] },
@@ -602,26 +394,14 @@
             },
             "7월": {
                 titleMonth: "VOC 현황 . 2026년 7월",
-                kpi: {
-                    totalVoc: "9,623", general: "8,642", claim: "291", online: "220",
-                    onlineYoy: "▼ YoY -17.6% 감소", onlineYoyColor: "#0056b3",
-                    store: "66", storeYoy: "▼ YoY -24.1% 감소", storeYoyColor: "#0056b3", hq: "",
-                    mtdTotalText: "[MTD] VOC 1,330건<br><span style='font-size: 11px; font-weight: normal; color: #555;'>(일반 1,131건 / 클레임 65건)</span>",
-                    mtdOnlineText: "[MTD] 55건", mtdStoreText: "[MTD] 8건"
-                },
+                kpi: { totalClaim: "291", mtdClaimText: "[MTD] 클레임 65건", online: "220", onlineYoy: "▼ YoY -17.6% 감소", onlineYoyColor: "#0056b3", mtdOnlineText: "[MTD] 55건", store: "66", storeYoy: "▼ YoY -24.1% 감소", storeYoyColor: "#0056b3", mtdStoreText: "[MTD] 8건", adcp: "2", mtdAdcpText: "" },
                 channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [69.7, 19.2, 11.0, 0.1], counts: [6549, 1799, 1036, 7], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
-                    labels: ['생산팀', '구매전략팀', '영업팀', '이커머스팀&IT팀', '알랭뒤카스운영팀'], data: [149, 52, 53, 32, 2],
-                    tableHtml: `
-                        <tr><td>생산팀</td><td class="text-left">오제공(누락) 103, 배송불만 21, 원두품질 21, 원두이물 3</td><td><strong>149</strong></td></tr>
-                        <tr><td>구매전략팀</td><td class="text-left">상품품질 52</td><td><strong>52</strong></td></tr>
-                        <tr><td>영업팀</td><td class="text-left">이용불편 15, 오제공 13, 불친절 9, 응대미흡 6, 대기불만 4, 음료이물 4, 고객피해 1, 베이커리이물 1, 점포위생 1</td><td><strong>53</strong></td></tr>
-                        <tr><td>이커머스팀&IT팀</td><td class="text-left">시스템오류 24, 프로모션 5, 사이트이용불편 3</td><td><strong>32</strong></td></tr>
-                        <tr><td>알랭뒤카스운영팀</td><td class="text-left">초콜릿 오제공 2</td><td><strong>2</strong></td></tr>
-                    `
+                    labels: ['생산팀', '구매전략팀', '영업팀', '이커머스팀&IT팀', '알랭뒤카스운영팀'], data: [149, 52, 53, 32, 2], colors: ['#eb7a2b', '#3b5f9e', '#3b5f9e', '#3b5f9e', '#3b5f9e'],
+                    details: ["오제공(누락) 103 · 배송불만 21 · 원두품질 21 · 원두이물 3", "상품품질 52", "이용불편 15 · 오제공 13 · 불친절 9 · 응대미흡 6 · 대기불만 4 · 음료이물 4 · 고객피해 1 · 베이커리이물 1 · 점포위생 1", "시스템오류 24 · 프로모션 5 · 사이트이용불편 3", "초콜릿 오제공 2"]
                 },
-                onlinePie: { labels: ['오제공(누락)', '상품품질', '시스템오류', '배송불만', '원두품질', '프로모션', '이용불편', '원두이물'], data: [47, 18, 11, 10, 10, 2, 1, 1], counts: [103, 40, 24, 21, 21, 5, 3, 3], colors: ['#4a81d4', '#1c3664', '#2ed573', '#a4b0be', '#7bed9f', '#eccc68', '#ffa502', '#ff7f50'] },
-                storePie: { labels: ['매장이용불편', '오제공(누락)', '상품품질(MD)', '불친절', '응대미흡', '대기불만', '음료이물', '고객피해', '베이커리이물', '점포위생', '원두품질'], data: [23, 20, 18, 14, 9, 6, 5, 1, 1, 1, 1], counts: [15, 13, 12, 9, 6, 4, 3, 1, 1, 1, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f', '#3498db', '#2ecc71', '#e74c3c', '#9b59b6', '#34495e', '#7f8c8d'] },
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '시스템오류', '배송불만', '원두품질', '프로모션', '이용불편', '원두이물'], data: [47, 18, 11, 10, 10, 2, 1, 1], counts: [103, 40, 24, 21, 21, 5, 3, 3], colors: ['#a4b8df', '#3b5f9e', '#5dade2', '#85929e', '#2c3e50', '#f4d03f', '#e67e22', '#e74c3c'] },
+                storePie: { labels: ['매장이용불편', '오제공(누락)', '상품품질(MD)', '불친절', '응대미흡', '대기불만', '음료이물', '고객피해', '베이커리이물', '점포위생', '원두품질'], data: [23, 20, 18, 14, 9, 6, 5, 1, 1, 1, 1], counts: [15, 13, 12, 9, 6, 4, 3, 1, 1, 1, 1], colors: ['#4a81d4', '#eb7a2b', '#1c3664', '#f1c40f', '#3498db', '#9b59b6', '#2ecc71', '#e74c3c', '#34495e', '#c0392b', '#7f8c8d'] },
                 issues: [
                     { category: "다발생", icon: "🚨", color: "#CE0019", items: [ "에코백(쇼핑백) 누락 12건 · 오제공 3건", "웰컴등급 문자 오발송 불만 15건", "원두 품질 불만 10건 (코스타리카 발효취 8 · 에티오피아 디카페인 오래된 맛 1 · 원두봉투 분쇄도 표기 불만 1)" ] },
                     { category: "점포 서비스", icon: "🏪", color: "#2980b9", items: [ "이용 불편 3건 (동탄호수점 매장 온도 2 · 경주점 테이블 위생·냄새 1)", "오제공·누락 2건 (예술의전당점 원두 오제공 1 · 케이크 누락 1)", "불친절 1건 (수영점 드립 추출 태도·명령어조)", "ADCP 점포 오제공 2건 (초콜릿 오제공)" ] },
@@ -639,31 +419,26 @@
             },
             "8월": {
                 titleMonth: "VOC 현황 . 2026년 8월",
-                kpi: {
-                    totalVoc: "10,990", general: "9,852", claim: "341", online: "248",
-                    onlineYoy: "▼ YoY -11.7% 감소", onlineYoyColor: "#0056b3",
-                    store: "86", storeYoy: "▼ YoY -19.6% 감소", storeYoyColor: "#0056b3", hq: "",
-                    mtdTotalText: "[MTD] VOC 1,367건<br><span style='font-size: 11px; font-weight: normal; color: #555;'>(일반 1,210건 / 클레임 50건)</span>",
-                    mtdOnlineText: "[MTD] 28건", mtdStoreText: "[MTD] 20건"
-                },
+                kpi: { totalClaim: "341", mtdClaimText: "[MTD] 클레임 50건", online: "248", onlineYoy: "▼ YoY -11.7% 감소", onlineYoyColor: "#0056b3", mtdOnlineText: "[MTD] 28건", store: "86", storeYoy: "▼ YoY -19.6% 감소", storeYoyColor: "#0056b3", mtdStoreText: "[MTD] 20건", adcp: "4", mtdAdcpText: "[MTD] 2건" },
                 channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [70.2, 18.6, 11.1, 0.1], counts: [7542, 1998, 1191, 7], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
                 dept: {
-                    labels: ['생산팀', '구매전략팀', '영업팀', '이커머스팀&IT팀', '알랭뒤카스운영팀'], data: [169, 60, 70, 35, 4],
-                    tableHtml: `
-                        <tr><td>생산팀</td><td class="text-left">오제공(누락) 117, 배송불만 23, 원두품질 26, 원두이물 3</td><td><strong>169</strong></td></tr>
-                        <tr><td>구매전략팀</td><td class="text-left">상품품질 60</td><td><strong>60</strong></td></tr>
-                        <tr><td>영업팀</td><td class="text-left">이용불편 21, 오제공 17, 불친절 10, 응대미흡 8, 대기불만 4, 음료이물 3, 고객피해 2, 베이커리이물 2, 점포위생 2, 메뉴품질 1</td><td><strong>70</strong></td></tr>
-                        <tr><td>이커머스팀&IT팀</td><td class="text-left">시스템오류 24, 프로모션 6, 사이트이용불편 5</td><td><strong>35</strong></td></tr>
-                        <tr><td>알랭뒤카스운영팀</td><td class="text-left">초콜릿 오제공 3, 초콜릿 훼손 1</td><td><strong>4</strong></td></tr>
-                    `
+                    labels: ['생산팀', '영업팀', '구매전략팀', '이커머스팀&IT팀', '알랭뒤카스운영팀'], data: [169, 70, 60, 35, 4], colors: ['#eb7a2b', '#3b5f9e', '#3b5f9e', '#3b5f9e', '#3b5f9e'],
+                    details: [
+                        "오제공(누락) 117 · 배송불만 23 · 원두품질 26 · 원두이물 3",
+                        "이용불편 21 · 오제공 17 · 불친절 10 · 응대미흡 8 · 대기불만 4 · 음료이물 3 · 고객피해 2 · 베이커리이물 2 · 점포위생 2 · 메뉴품질 1",
+                        "상품품질 60",
+                        "시스템오류 24 · 프로모션 6 · 사이트이용불편 5",
+                        "초콜릿 오제공 3 · 초콜릿 훼손 1"
+                    ]
                 },
-                onlinePie: { labels: ['오제공(누락)', '상품품질', '시스템오류', '원두품질', '배송불만', '프로모션', '이용불편', '원두이물'], data: [47, 18, 10, 10, 9, 2, 2, 1], counts: [117, 45, 24, 25, 23, 6, 5, 3], colors: ['#4a81d4', '#1c3664', '#2ed573', '#7bed9f', '#a4b0be', '#eccc68', '#ffa502', '#ff7f50'] },
-                storePie: { labels: ['매장이용불편', '오제공(누락)', '상품품질(MD)', '불친절', '응대미흡', '대기불만', '음료이물', '고객피해', '베이커리이물', '점포위생', '메뉴품질', '원두품질'], data: [24, 20, 17, 12, 9, 5, 4, 2, 2, 2, 1, 1], counts: [21, 17, 15, 10, 8, 4, 3, 2, 2, 2, 1, 1], colors: ['#4a81d4', '#1c3664', '#f39c12', '#a4b0be', '#f1c40f', '#3498db', '#2ecc71', '#e74c3c', '#9b59b6', '#34495e', '#16a085', '#7f8c8d'] },
+                managementPoint: "생산팀 169건(전체 49.6%) 집중 관리 · 오제공(누락) 117건이 최다 발생 유형",
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '시스템오류', '원두품질', '배송불만', '프로모션', '이용불편', '원두이물'], data: [47, 18, 10, 10, 9, 2, 2, 1], counts: [117, 45, 24, 25, 23, 6, 5, 3], colors: ['#4a81d4', '#1c3664', '#5dade2', '#7bed9f', '#85929e', '#f4d03f', '#e67e22', '#e74c3c'] },
+                storePie: { labels: ['매장이용불편', '오제공(누락)', '상품품질(MD)', '불친절', '응대미흡', '대기불만', '음료이물', '고객피해', '베이커리이물', '점포위생', '메뉴품질', '원두품질'], data: [24, 20, 17, 12, 9, 5, 4, 2, 2, 2, 1, 1], counts: [21, 17, 15, 10, 8, 4, 3, 2, 2, 2, 1, 1], colors: ['#4a81d4', '#eb7a2b', '#1c3664', '#f1c40f', '#3498db', '#9b59b6', '#2ecc71', '#e74c3c', '#9b59b6', '#34495e', '#16a085', '#7f8c8d'] },
                 issues: [
-                    { category: "다발생", icon: "🚨", color: "#CE0019", items: [ "아이스크림 오제공·누락 14건 (발주서 전달 오류에 따른 누락 9 · 기타 오제공 5)", "원두 품질 불만 4건 (에티오피아 디카페인 로스팅·탄맛 1 · 에스프레소 프로 탄맛 1 · 코스타리카 향미 1 · 코스타리카 원두 깨짐 품질 불만 1)", "상품 품질 불만 5건 (핫브루 액상스틱 2 · 아이스크림 제조 후 1년 경과 1 · 피칸파이 변질 의심·파손 1 · 파우더 커피 곰팡이 1)" ] },
-                    { category: "점포 서비스", icon: "🏪", color: "#2980b9", items: [ "이용 불편 6건 (포스코센터점 와이파이 2·좌석 관리 1 / 경주점 자동문 센서 1 / 사천해변점 불법주차 1 / 예술의전당점 외부음식물·좌석 관리 1)", "오제공·누락 4건 (본점 1 · 청주지웰시티점 2 · 수영점 1)", "불친절·응대 미흡 3건 (경주점 직원 불친절 1 / 수영점 주문 응대 미흡 1 / 사천해변점 커피 옵션 안내 미흡 1)", "점포 위생 1건 (본점 유니폼·두발 관리) · 메뉴 품질 1건 (신라모노그램점 배치브루)", "ADCP 점포 2건 (초콜릿 오제공 1 · 보냉팩 터짐 상품 훼손 1)" ] },
+                    { category: "다발생", icon: "🚨", color: "#CE0019", items: [ "아이스크림 오제공·누락 14건 (발주서 전달 오류에 따른 누락 9 · 기타 오제공 5)", "원두 품질 불만 4건 (에티오피아 디카페인 로스팅·탄맛 1 · 에스프레소 프로 맛 1 · 코스타리카 향미 1 · 원두 품질·깨짐 1)", "상품 품질 불만 5건 (핫브루 액상스틱 2 · 아이스크림 제조 후 1년 경과 1 · 피칸파이 변질 의심·파손 1 · 파우더 커피 곰팡이 1)" ] },
+                    { category: "점포 서비스", icon: "🏪", color: "#2980b9", items: [ "이용 불편 6건 (포스코센터점 와이파이 2·좌석 관리 1 / 경주점 자동문 센서 1 / 사천해변점 불법주차 1 / 예술의전당점 외부음식물·좌석 관리 1)", "오제공·누락 4건 (본점 1 · 청주지웰시티점 2 · 수영점 1)", "불친절·응대 미흡 3건 (경주점 직원 불친절 1 / 수영점 주문 응대 미흡 1 / 사천해변점 커피 옵션 안내 미흡 1)", "점포 위생 1건 (본점 유니폼·두발 관리) · 메뉴 품질 1건 (강릉신라모노그램점 배치브루)", "ADCP 점포 2건 (초콜릿 오제공 1 · 보냉팩 터짐 상품 훼손 1)" ] },
                     { category: "품질·안전", icon: "🛡️", color: "#d35400", items: [ "점포 발생 상품 품질 3건 (파우더 커피 내용물 없음 1 · 콜라백 불량 1 · 미르 머그 불량 1)", "이물 1건 (본점 퀸아망 철수세미)" ] },
-                    { category: "기타", icon: "📌", color: "#7f8c8d", items: [ "배송상품 파손 2건", "첫 구매 이벤트 구매조건 미고지·과대/미끼광고 불만 1건", "파나마 호세 게이샤 품절 관련 플러스 회원 해지 요청 1건 · 로스팅 날짜 상이 1건" ] }
+                    { category: "기타", icon: "📌", color: "#7f8c8d", items: [ "배송상품 파손 2건", "첫 구매 이벤트 구매조건 미고지·과대/미끼광고 불만 1건", "파나마 호세 게이샤 품절 관련 플러스 회원 해지 요청 1건 · 로스팅 날짜 상이 불만 1건" ] }
                 ],
                 internalIssues: {
                     summary: "<strong>■ 8월 총계 197건 · 1,345개</strong> <span style='color:#1c3664; font-weight:600;'>(품질 89건·952개 | 이물 18건·23개 | 파손·변형 23건·82개 | 식품안전 11건·84개 | 오입고·미입고 56건·204개)</span><br><span style='color: #666; font-size: 12.5px; display: inline-block; margin-top: 5px;'>※ 점포 사전 발견 이슈 기준이며, 아래는 다발생·이물·식품안전 등 주요 관리 이슈를 선별하여 기재</span>",
@@ -674,30 +449,57 @@
                         { category: "식품 안전", text: "선입선출 미준수 5건·77개 / 한글표시사항 훼손·미부착 5건·6개 / 소비기한 임박 1건", color: "#9b59b6" }
                     ]
                 }
-            }
-        };
-
-        Chart.register(ChartDataLabels);
-        Chart.defaults.font.family = "'Pretendard', 'Malgun Gothic', sans-serif";
-
-        const legendMarginPlugin = {
-            id: 'legendMargin',
-            beforeInit(chart) {
-                const originalFit = chart.legend.fit;
-                chart.legend.fit = function fit() {
-                    originalFit.bind(chart.legend)();
-                    this.height += 15;
+            },
+            "9월": {
+                titleMonth: "VOC 현황 . 2026년 9월",
+                kpi: {
+                    totalClaim: "398", mtdClaimText: "[MTD] 클레임 57건",
+                    online: "282", onlineYoy: "▼ YoY -6.6% 감소", onlineYoyColor: "#0056b3", mtdOnlineText: "[MTD] 34건",
+                    store: "104", storeYoy: "▼ YoY -13.3% 감소", storeYoyColor: "#0056b3", mtdStoreText: "[MTD] 18건",
+                    adcp: "6", mtdAdcpText: "[MTD] 2건"
+                },
+                channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [70.7, 18.2, 11.1, 0.1], counts: [8651, 2223, 1355, 8], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
+                dept: {
+                    labels: ['생산팀', '영업팀', '구매전략팀', '이커머스팀 & IT팀', '알랭뒤카스운영팀'], 
+                    data: [194, 84, 69, 39, 6], 
+                    colors: ['#eb7a2b', '#3b5f9e', '#3b5f9e', '#3b5f9e', '#3b5f9e'],
+                    details: [
+                        "오제공(누락) 131 · 배송불만 28 · 원두품질 28 · 원두이물 4 · 원두포장불량 3",
+                        "이용불편 25 · 오제공 22 · 불친절&응대미흡 20 · 대기불만 4 · 메뉴품질 4 · 음료이물 3 · 베이커리(자체생산) 이물질 2 · 점포위생 2 · 고객피해 2",
+                        "상품품질 67 · 이물질 2",
+                        "시스템불편 24 · 프로모션 8 · 사이트이용불편 7",
+                        "오제공 3 · 초콜릿 훼손 1 · 오결제 1 · 환불정책안내미흡 1"
+                    ]
+                },
+                managementPoint: "생산팀 194건(전체 49.5%) 집중 관리 · 오제공(누락) 131건이 최다 발생 유형",
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '원두품질', '배송불만', '시스템불편', '프로모션', '이용불편', '원두이물', '원두 포장품질'], data: [46, 18, 10, 10, 9, 3, 2, 1, 1], counts: [131, 50, 28, 28, 24, 8, 7, 4, 3], colors: ['#4a81d4', '#1c3664', '#2c3e50', '#a4b0be', '#5dade2', '#f4d03f', '#e67e22', '#e74c3c', '#95a5a6'] },
+                storePie: { labels: ['매장이용불편', '오제공(누락)', '불친절&응대미흡', '상품품질(MD, OEM)', '대기불만', '메뉴품질', '음료이물', '고객피해', '베이커리이물', '점포위생', '원두품질'], data: [24, 21, 19, 18, 4, 4, 3, 2, 2, 2, 1], counts: [25, 22, 20, 19, 4, 4, 3, 2, 2, 2, 1], colors: ['#4a81d4', '#a4b0be', '#f1c40f', '#1c3664', '#3498db', '#16a085', '#2ecc71', '#e74c3c', '#34495e', '#c0392b', '#7f8c8d'] },
+                issues: [
+                    { category: "다발생", icon: "🚨", color: "#CE0019", items: [ "자사몰 오제공·누락 14건 (누락 7 · 오제공 7)", "원두 봉투 지퍼백 불량 3건", "배송 불만 5건 (상품 파손 3 · 배송 지연 2)" ] },
+                    { category: "점포 서비스", icon: "🏪", color: "#2980b9", items: [ "이용 불편 5건 (서종점 테라오더 주문 미수락 · 수영점 키오스크 동선·위생 · 경주점 주차 대기 · 강릉신라모노그램점 좌석 운영 · 광화문점 테라오더 운영)", "오제공·누락 4건 (수영점·포스텍점 빵 누락 / 청계광장점 케이크 오제공 / 본점 케이크 누락)", "불친절 2건 (원그로브점 직원 불친절·사과 요청 / 용인에버랜드점 직원 응대 태도)", "응대 미흡 2건 (수영점 주문 응대 / 사천해변점 커피 옵션 안내)" ] },
+                    { category: "품질·안전", icon: "🛡️", color: "#d35400", items: [ "상품 품질 불만 5건 (케이크 배송 품질 2 · 아이스크림 녹음 1 · 상품 훼손 2)", "원두 품질 불만 2건 (드립백 쓴맛 1 · 하우스 드립 블렌드 탄맛 1)", "이물 3건 (드립백 벌레 1 · 뺑오쇼콜라 벌레 1 · 올리브치아바타 곰팡이 1)", "점포 발생 상품 품질 2건 (머그 도색 불량 1 · 배지 불량 1)", "점포 메뉴 품질 3건 (포스코센터점·역삼역점 수박주스 품질 2 · 임당점 티라미수 이취 1)" ] },
+                    { category: "기타", icon: "📌", color: "#7f8c8d", items: [ "프로모션 불만 2건 (스탬프 쿠폰 성수 미오픈 · 첫 구매 이벤트 조건 미고지)", "로스팅 날짜 불만 2건", "ADCP 점포 2건 (오결제 1 · 환불 불가 사전 안내 미흡 및 환불 거부 1)" ] }
+                ],
+                internalIssues: {
+                    summary: "<strong>■ 9월 총계 134건 · 721개</strong> <span style='color:#1c3664; font-weight:600;'>(품질 39건·467개 | 이물 10건·17개 | 파손·변형 17건·39개 | 식품안전 11건·24개 | 오입고·미입고 57건·174개)</span><br><span style='color: #666; font-size: 12.5px; display: inline-block; margin-top: 5px;'>※ 점포 사전 발견 이슈 기준이며, 아래는 다발생·이물·식품안전 등 주요 관리 이슈를 선별하여 기재</span>",
+                    items: [
+                        { category: "이물", text: "비트 7건·14개(곰팡이) / <span class='oem-badge'>OEM</span>퀸아망 1건·1개(비정형 이물) / <span class='oem-badge'>OEM</span>햄치즈에그브리오슈 1건·1개 / 초코바나나크로와상 1건·1개(머리카락)", color: "#e74c3c" },
+                        { category: "품질 불량", text: "<span class='oem-badge'>OEM</span>크로와상 5건·218개(규격 210개 중심) / 퀸아망 7건·166개(규격 138개 중심) / 티라미수 6건·58개(시럽 과다·부족) / 마들렌 6건·7개(품질 6개·포장 1개) 집중 발생", color: "#f39c12" },
+                        { category: "파손·변형", text: "시그니처 피칸파이 7건·20개(파손) / 커팅티라미수 1건·6개(변형) / 우유 1건·3개(파손) 중심 발생", color: "#34495e" },
+                        { category: "식품 안전", text: "표시사항 7건·20개(퀸아망 9개·피칸 아몬드 데니쉬 6개 등 표시사항 누락·훼손) / 소비기한 4건·4개(지에쉬네 소비기한 임박·경과 2건 등) 발생", color: "#9b59b6" }
+                    ]
                 }
             }
         };
 
-        let channelChart, deptChart, onlinePieChart, storePieChart;
+        let channelChart, onlinePieChart, storePieChart, monthlyTrendChart;
 
-        function isMobile() {
-            return window.innerWidth <= 768;
-        }
+        function isMobile() { return window.innerWidth <= 768; }
 
         window.onload = function() {
+            Chart.register(ChartDataLabels);
+            Chart.defaults.font.family = "'Pretendard', 'Malgun Gothic', sans-serif";
+
             channelChart = new Chart(document.getElementById('channelChart'), {
                 type: 'bar', data: { datasets: [{ barThickness: 12 }] },
                 options: {
@@ -711,40 +513,42 @@
                 }
             });
 
-            deptChart = new Chart(document.getElementById('deptChart'), {
-                type: 'bar', data: { datasets: [{ backgroundColor: '#4a81d4', barThickness: isMobile() ? 18 : 30 }] },
-                options: {
-                    plugins: { 
-                        legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.raw + '건' } },
-                        datalabels: { anchor: 'end', align: 'top', color: '#333', font: { size: isMobile() ? 11 : 13, weight: 'bold' } }
-                    },
-                    scales: { x: { grid: { display: false }, ticks: { font: { size: isMobile() ? 10 : 12 } } }, y: { beginAtZero: true, max: 180, display: false } }, maintainAspectRatio: false
-                }
-            });
-
             const pieOptions = {
-                cutout: '40%', layout: { padding: { left: 10, right: 10, top: 10, bottom: 10 } }, 
+                cutout: '40%', 
+                layout: { padding: { left: 25, right: 25, top: 15, bottom: 25 } }, 
                 plugins: { 
                     legend: { 
-                        display: true, position: 'bottom', 
-                        labels: { boxWidth: isMobile() ? 10 : 12, padding: isMobile() ? 8 : 12, font: { size: isMobile() ? 10 : 12 } } 
+                        display: true, 
+                        position: isMobile() ? 'bottom' : 'right', 
+                        labels: { boxWidth: 12, padding: 15, font: { size: 13 } } 
                     },
                     tooltip: { callbacks: { label: ctx => ' ' + ctx.label + ': ' + ctx.raw + '% (' + ctx.dataset.counts[ctx.dataIndex].toLocaleString() + '건)' } },
                     datalabels: { color: '#fff', font: { size: isMobile() ? 11 : 14, weight: 'bold' }, textAlign: 'center', formatter: v => v < 4 ? null : v + '%' }
                 }, maintainAspectRatio: false 
             };
 
-            onlinePieChart = new Chart(document.getElementById('onlinePieChart'), { type: 'doughnut', data: { datasets: [{}] }, options: pieOptions, plugins: [legendMarginPlugin] });
-            storePieChart = new Chart(document.getElementById('storePieChart'), { type: 'doughnut', data: { datasets: [{}] }, options: pieOptions, plugins: [legendMarginPlugin] });
+            const legendMarginPlugin = {
+                id: 'legendMargin',
+                beforeInit(chart) {
+                    const originalFit = chart.legend.fit;
+                    chart.legend.fit = function fit() {
+                        originalFit.bind(chart.legend)();
+                        this.height += 15;
+                    }
+                }
+            };
 
-            new Chart(document.getElementById('monthlyTrendChart'), {
+            onlinePieChart = new Chart(document.getElementById('onlinePieChart'), { type: 'doughnut', data: { datasets: [{}] }, options: pieOptions });
+            storePieChart = new Chart(document.getElementById('storePieChart'), { type: 'doughnut', data: { datasets: [{}] }, options: pieOptions });
+
+            monthlyTrendChart = new Chart(document.getElementById('monthlyTrendChart'), {
                 type: 'line',
                 data: {
-                    labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월'],
+                    labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월'],
                     datasets: [
-                        { type: 'line', label: '점당 클레임 건수', data: [0.20, 0.16, 0.45, 0.32, 0.32, 0.42, 0.26, null], borderColor: '#1c3664', backgroundColor: '#1c3664', borderWidth: 3, tension: 0, yAxisID: 'y1', order: 1, datalabels: { anchor: 'start', align: 'bottom', color: '#1c3664', font: { size: isMobile() ? 10 : 12, weight: 'bold' }, offset: 5 } },
-                        { type: 'line', label: '클레임', data: [45, 37, 35, 31, 21, 57, 65, 50], borderColor: '#4a81d4', backgroundColor: '#4a81d4', borderWidth: 3, tension: 0, yAxisID: 'y', order: 2, datalabels: { anchor: 'end', align: 'top', color: '#4a81d4', font: { size: isMobile() ? 10 : 12, weight: 'bold' }, offset: 5 } },
-                        { type: 'bar', label: '이물질 건수', data: [45, 69, 33, 27, 23, 16, 24, 19], backgroundColor: '#dcdde1', barThickness: isMobile() ? 15 : 30, yAxisID: 'y', order: 3, datalabels: { anchor: 'end', align: 'bottom', color: '#333', font: { size: isMobile() ? 10 : 12, weight: 'bold' } } }
+                        { type: 'line', label: '점당 클레임 건수', data: [0.20, 0.16, 0.45, 0.32, 0.32, 0.42, 0.26, 0.65, 0.56], borderColor: '#1c3664', backgroundColor: '#1c3664', borderWidth: 3, tension: 0, yAxisID: 'y1', order: 1, datalabels: { anchor: 'start', align: 'bottom', color: '#1c3664', font: { size: isMobile() ? 10 : 12, weight: 'bold' }, offset: 5 } },
+                        { type: 'line', label: '클레임', data: [45, 37, 35, 31, 21, 57, 65, 50, 57], borderColor: '#4a81d4', backgroundColor: '#4a81d4', borderWidth: 3, tension: 0, yAxisID: 'y', order: 2, datalabels: { anchor: 'end', align: 'top', color: '#4a81d4', font: { size: isMobile() ? 10 : 12, weight: 'bold' }, offset: 5 } },
+                        { type: 'bar', label: '이물질 건수', data: [45, 69, 33, 27, 23, 16, 24, 19, 13], backgroundColor: '#dcdde1', barThickness: isMobile() ? 15 : 25, yAxisID: 'y', order: 3, datalabels: { anchor: 'end', align: 'bottom', color: '#333', font: { size: isMobile() ? 10 : 12, weight: 'bold' } } }
                     ]
                 },
                 options: { 
@@ -753,7 +557,7 @@
                     scales: { 
                         x: { display: isMobile() ? true : false, ticks: { font: { size: 11 } }, grid: { display: false } }, 
                         y: { type: 'linear', display: true, position: 'left', max: 80, grid: { borderDash: [5, 5] }, ticks: { font: { size: 11 } } }, 
-                        y1: { type: 'linear', display: true, position: 'right', max: 0.50, min: 0, grid: { drawOnChartArea: false }, ticks: { font: { size: 11 } } } 
+                        y1: { type: 'linear', display: true, position: 'right', max: 0.70, min: 0, grid: { drawOnChartArea: false }, ticks: { font: { size: 11 } } } 
                     } 
                 }
             });
@@ -770,46 +574,118 @@
             if (!data) return;
 
             document.getElementById('title-month').innerText = data.titleMonth;
-            document.getElementById('kpi-total').innerText = data.kpi.totalVoc + '건';
-            document.getElementById('kpi-general').innerText = data.kpi.general + '건';
-            document.getElementById('kpi-claim').innerText = data.kpi.claim + '건';
+            
+            // 💡 1~6월은 ADCP 카드를 숨기고 그리드를 4칸으로 변경, 7월부터는 5칸 노출
+            const adcpCard = document.getElementById('adcp-card');
+            const kpiContainer = document.getElementById('kpi-container');
+            const isAdcpVisible = !['1월', '2월', '3월', '4월', '5월', '6월'].includes(monthKey);
+
+            if (isAdcpVisible) {
+                adcpCard.style.display = 'flex';
+                kpiContainer.classList.remove('grid-4');
+                kpiContainer.classList.add('grid-5');
+                
+                document.getElementById('kpi-adcp').innerText = data.kpi.adcp + '건';
+                const mtdAdcp = document.getElementById('mtd-adcp');
+                if (data.kpi.mtdAdcpText && data.kpi.mtdAdcpText !== "-" && data.kpi.mtdAdcpText !== "") { 
+                    mtdAdcp.style.display = 'block'; 
+                    mtdAdcp.innerHTML = data.kpi.mtdAdcpText; 
+                } else { 
+                    mtdAdcp.style.display = 'none'; 
+                }
+            } else {
+                adcpCard.style.display = 'none';
+                kpiContainer.classList.remove('grid-5');
+                kpiContainer.classList.add('grid-4');
+            }
+
+            // 상단 KPI 텍스트 주입
+            document.getElementById('kpi-totalClaim').innerText = data.kpi.totalClaim + '건';
+            
+            const mtdClaim = document.getElementById('mtd-claim');
+            if (data.kpi.mtdClaimText && data.kpi.mtdClaimText !== "-") {
+                mtdClaim.style.display = 'block'; mtdClaim.innerHTML = data.kpi.mtdClaimText;
+            } else { mtdClaim.style.display = 'none'; }
             
             document.getElementById('kpi-online').innerText = data.kpi.online + '건';
-            const onlineYoy = document.getElementById('kpi-online-yoy');
-            onlineYoy.innerText = data.kpi.onlineYoy;
-            onlineYoy.style.color = data.kpi.onlineYoyColor;
-
-            document.getElementById('kpi-store').innerText = data.kpi.store + '건';
-            const storeYoy = document.getElementById('kpi-store-yoy');
-            storeYoy.innerText = data.kpi.storeYoy;
-            storeYoy.style.color = data.kpi.storeYoyColor;
-
-            document.getElementById('kpi-hq').innerText = data.kpi.hq;
-
-            const mtdTotal = document.getElementById('mtd-total');
-            if (data.kpi.mtdTotalText) { mtdTotal.style.display = 'block'; mtdTotal.innerHTML = data.kpi.mtdTotalText; } 
-            else { mtdTotal.style.display = 'none'; }
-
+            document.getElementById('kpi-online-yoy').innerText = data.kpi.onlineYoy;
+            document.getElementById('kpi-online-yoy').style.color = data.kpi.onlineYoyColor;
+            
             const mtdOnline = document.getElementById('mtd-online');
-            if (data.kpi.mtdOnlineText) { mtdOnline.style.display = 'block'; mtdOnline.innerHTML = data.kpi.mtdOnlineText; } 
-            else { mtdOnline.style.display = 'none'; }
-
+            if (data.kpi.mtdOnlineText && data.kpi.mtdOnlineText !== "-") {
+                mtdOnline.style.display = 'block'; mtdOnline.innerHTML = data.kpi.mtdOnlineText;
+            } else { mtdOnline.style.display = 'none'; }
+            
+            document.getElementById('kpi-store').innerText = data.kpi.store + '건';
+            document.getElementById('kpi-store-yoy').innerText = data.kpi.storeYoy;
+            document.getElementById('kpi-store-yoy').style.color = data.kpi.storeYoyColor;
+            
             const mtdStore = document.getElementById('mtd-store');
-            if (data.kpi.mtdStoreText) { mtdStore.style.display = 'block'; mtdStore.innerHTML = data.kpi.mtdStoreText; } 
-            else { mtdStore.style.display = 'none'; }
+            if (data.kpi.mtdStoreText && data.kpi.mtdStoreText !== "-") {
+                mtdStore.style.display = 'block'; mtdStore.innerHTML = data.kpi.mtdStoreText;
+            } else { mtdStore.style.display = 'none'; }
 
-            document.getElementById('dept-table-body').innerHTML = data.dept.tableHtml;
-
+            // 채널 차트 업데이트
             channelChart.data.labels = data.channel.labels;
             channelChart.data.datasets[0].data = data.channel.data;
             channelChart.data.datasets[0].counts = data.channel.counts;
             channelChart.data.datasets[0].backgroundColor = data.channel.colors;
             channelChart.update();
 
-            deptChart.data.labels = data.dept.labels;
-            deptChart.data.datasets[0].data = data.dept.data;
-            deptChart.update();
+            // 책임부서별 클레임 현황 (커스텀 HTML 프로그레스 바 차트 렌더링)
+            const maxDeptVal = Math.max(...data.dept.data);
+            const totalDeptVal = data.dept.data.reduce((a, b) => a + b, 0);
+            
+            let barsHtml = data.dept.labels.map((label, idx) => {
+                let val = data.dept.data[idx];
+                let color = data.dept.colors[idx];
+                let percent = ((val / totalDeptVal) * 100).toFixed(1);
+                let width = (val / maxDeptVal) * 90; 
+                
+                return `
+                    <div class="custom-bar-row">
+                        <div class="custom-bar-label">${label}</div>
+                        <div class="custom-bar-track">
+                            <div class="custom-bar-fill" style="width: ${width}%; background-color: ${color};"></div>
+                        </div>
+                        <div class="custom-bar-val-area">
+                            <div class="custom-bar-value">${val}</div>
+                            <div class="custom-bar-percent">${percent}%</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            let exclusionText = (monthKey === "9월") ? `<div style="font-size: 12px; color: #888; margin-top: 15px; margin-left: 5px;">※ 누적 클레임 398건 중 본사 자체 클레임 6건 제외 (책임부서별 집계 392건)</div>` : '';
+            document.getElementById('custom-dept-chart-container').innerHTML = barsHtml + exclusionText;
 
+            // 책임부서별 주요 클레임 유형 (세로형 리스트 카드 렌더링)
+            let detailsHtml = data.dept.labels.map((label, idx) => {
+                let desc = data.dept.details[idx];
+                let color = data.dept.colors[idx];
+                return `
+                    <div class="dept-type-card" style="border-left-color: ${color};">
+                        <div class="dept-type-header"><strong style="color: #111;">${label}</strong> <span style="color: #ccc; margin: 0 8px;">|</span> <strong style="color: #444;">${data.dept.data[idx]}건</strong></div>
+                        <div class="dept-type-desc">${desc}</div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('dept-types-container').innerHTML = detailsHtml;
+
+            // 관리 포인트 배너 렌더링
+            if (data.managementPoint) {
+                document.getElementById('management-point-container').style.display = 'block';
+                document.getElementById('management-point-container').innerHTML = `
+                    <div class="management-point-banner">
+                        <span class="mp-badge">관리 포인트</span>
+                        <span>${data.managementPoint}</span>
+                    </div>
+                `;
+            } else {
+                document.getElementById('management-point-container').style.display = 'none';
+            }
+
+            // 도넛 차트 업데이트
             onlinePieChart.data.labels = data.onlinePie.labels;
             onlinePieChart.data.datasets[0].data = data.onlinePie.data;
             onlinePieChart.data.datasets[0].counts = data.onlinePie.counts;
@@ -822,6 +698,7 @@
             storePieChart.data.datasets[0].backgroundColor = data.storePie.colors;
             storePieChart.update();
 
+            // 공통 이슈 렌더링
             const issueContainer = document.getElementById('issue-container');
             const issueTitle = document.getElementById('issue-title');
             const issueGrid = document.getElementById('issue-grid');
