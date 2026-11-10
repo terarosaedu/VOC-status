@@ -34,7 +34,7 @@
             font-size: 14px; color: #444; line-height: 1.5; letter-spacing: -0.3px;
         }
 
-        /* 💡 동적 KPI 그리드 레이아웃 (ADCP 유무에 따른 4단/5단 전환) */
+        /* 💡 통합 레이아웃 */
         .dashboard-container { display: grid; gap: 15px; margin-bottom: 15px; }
         .grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
         .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -153,12 +153,13 @@
 
         <div class="title-banner">
             <div>
-                <h1 id="title-month">VOC 현황 . 2026년 9월</h1>
+                <h1 id="title-month">VOC 현황 . 2026년 10월</h1>
                 <p>EDUCATION & SERVICE TEAM</p>
             </div>
             <div style="width: 100%; max-width: 200px;">
                 <select id="monthSelector" class="month-select">
-                    <option value="9월" selected>2026년 9월</option>
+                    <option value="10월" selected>2026년 10월</option>
+                    <option value="9월">2026년 9월</option>
                     <option value="8월">2026년 8월</option>
                     <option value="7월">2026년 7월</option>
                     <option value="6월">2026년 6월</option>
@@ -178,7 +179,6 @@
             각 책임부서는 주요 발생 이슈를 정기적으로 확인하고 원인 개선 및 재발 방지 활동에 활용해 주시기 바랍니다.
         </div>
 
-        <!-- 💡 동적 그리드 변환을 위한 컨테이너 (id="kpi-container" 추가) -->
         <div class="dashboard-container grid-5" id="kpi-container">
             <div class="card">
                 <div class="card-title" style="margin-bottom: 5px;">누적 클레임 (YTD)</div>
@@ -203,7 +203,6 @@
                     <div id="mtd-store" class="mtd-label">-</div>
                 </div>
             </div>
-            <!-- 💡 ADCP 점포 클레임 (id="adcp-card" 추가, 1~6월엔 숨김) -->
             <div class="card" id="adcp-card">
                 <div class="card-title" style="margin-bottom: 5px;">ADCP 점포 클레임</div>
                 <div class="card-body">
@@ -269,22 +268,10 @@
                             <thead>
                                 <tr>
                                     <th class="row-header" style="border: none;"></th>
-                                    <th class="month-header">1월</th><th class="month-header">2월</th><th class="month-header">3월</th><th class="month-header">4월</th><th class="month-header">5월</th><th class="month-header">6월</th><th class="month-header">7월</th><th class="month-header">8월</th><th class="month-header">9월</th>
+                                    <th class="month-header">1월</th><th class="month-header">2월</th><th class="month-header">3월</th><th class="month-header">4월</th><th class="month-header">5월</th><th class="month-header">6월</th><th class="month-header">7월</th><th class="month-header">8월</th><th class="month-header">9월</th><th class="month-header">10월</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <th class="row-header"><span class="legend-box bg-gray"></span>이물질 건수</th>
-                                    <td>45</td><td>69</td><td>33</td><td>27</td><td>23</td><td>16</td><td>24</td><td>19</td><td>13</td>
-                                </tr>
-                                <tr>
-                                    <th class="row-header"><span class="legend-line bg-blue"></span>클레임</th>
-                                    <td>45</td><td>37</td><td>35</td><td>31</td><td>21</td><td>57</td><td>65</td><td>50</td><td>57</td>
-                                </tr>
-                                <tr>
-                                    <th class="row-header"><span class="legend-line bg-dark"></span>점당 클레임 건수</th>
-                                    <td>0.20</td><td>0.16</td><td>0.45</td><td>0.32</td><td>0.32</td><td>0.42</td><td>0.26</td><td>0.65</td><td>0.56</td>
-                                </tr>
+                            <tbody id="monthly-trend-table-body">
                             </tbody>
                         </table>
                     </div>
@@ -400,7 +387,7 @@
                     labels: ['생산팀', '구매전략팀', '영업팀', '이커머스팀&IT팀', '알랭뒤카스운영팀'], data: [149, 52, 53, 32, 2], colors: ['#eb7a2b', '#3b5f9e', '#3b5f9e', '#3b5f9e', '#3b5f9e'],
                     details: ["오제공(누락) 103 · 배송불만 21 · 원두품질 21 · 원두이물 3", "상품품질 52", "이용불편 15 · 오제공 13 · 불친절 9 · 응대미흡 6 · 대기불만 4 · 음료이물 4 · 고객피해 1 · 베이커리이물 1 · 점포위생 1", "시스템오류 24 · 프로모션 5 · 사이트이용불편 3", "초콜릿 오제공 2"]
                 },
-                onlinePie: { labels: ['오제공(누락)', '상품품질', '시스템오류', '배송불만', '원두품질', '프로모션', '이용불편', '원두이물'], data: [47, 18, 11, 10, 10, 2, 1, 1], counts: [103, 40, 24, 21, 21, 5, 3, 3], colors: ['#a4b8df', '#3b5f9e', '#5dade2', '#85929e', '#2c3e50', '#f4d03f', '#e67e22', '#e74c3c'] },
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '시스템오류', '배송불만', '원두품질', '프로모션', '이용불편', '원두이물'], data: [47, 18, 11, 10, 10, 2, 1, 1], counts: [103, 40, 24, 21, 21, 5, 3, 3], colors: ['#4a81d4', '#1c3664', '#5dade2', '#85929e', '#2c3e50', '#f4d03f', '#e67e22', '#e74c3c'] },
                 storePie: { labels: ['매장이용불편', '오제공(누락)', '상품품질(MD)', '불친절', '응대미흡', '대기불만', '음료이물', '고객피해', '베이커리이물', '점포위생', '원두품질'], data: [23, 20, 18, 14, 9, 6, 5, 1, 1, 1, 1], counts: [15, 13, 12, 9, 6, 4, 3, 1, 1, 1, 1], colors: ['#4a81d4', '#eb7a2b', '#1c3664', '#f1c40f', '#3498db', '#9b59b6', '#2ecc71', '#e74c3c', '#34495e', '#c0392b', '#7f8c8d'] },
                 issues: [
                     { category: "다발생", icon: "🚨", color: "#CE0019", items: [ "에코백(쇼핑백) 누락 12건 · 오제공 3건", "웰컴등급 문자 오발송 불만 15건", "원두 품질 불만 10건 (코스타리카 발효취 8 · 에티오피아 디카페인 오래된 맛 1 · 원두봉투 분쇄도 표기 불만 1)" ] },
@@ -489,6 +476,47 @@
                         { category: "식품 안전", text: "표시사항 7건·20개(퀸아망 9개·피칸 아몬드 데니쉬 6개 등 표시사항 누락·훼손) / 소비기한 4건·4개(지에쉬네 소비기한 임박·경과 2건 등) 발생", color: "#9b59b6" }
                     ]
                 }
+            },
+            // 💡 10월 데이터 추가 
+            "10월": {
+                titleMonth: "VOC 현황 . 2026년 10월",
+                kpi: {
+                    totalClaim: "438", mtdClaimText: "[MTD] 클레임 40건",
+                    online: "306", onlineYoy: "▼ YoY -7.6% 감소", onlineYoyColor: "#0056b3", mtdOnlineText: "[MTD] 24건",
+                    store: "119", storeYoy: "▼ YoY -4.8% 감소", storeYoyColor: "#0056b3", mtdStoreText: "[MTD] 15건",
+                    adcp: "7", mtdAdcpText: "[MTD] 1건"
+                },
+                channel: { labels: ['전화', '홈페이지', '챗봇', '이메일'], data: [71.2, 17.8, 11.0, 0.1], counts: [9705, 2427, 1495, 12], colors: ['#1c3664', '#4a7c59', '#f3a683', '#dcdde1'] },
+                dept: {
+                    labels: ['생산팀', '영업팀', '구매전략팀', '이커머스팀&IT팀', '알랭뒤카스운영팀'], 
+                    data: [213, 98, 73, 41, 7], 
+                    colors: ['#eb7a2b', '#3b5f9e', '#3b5f9e', '#3b5f9e', '#3b5f9e'],
+                    details: [
+                        "오제공(누락) 136 · 배송불만 31 · 원두품질 31 · 원두포장불량 10 · 원두이물 5",
+                        "이용불편 29 · 오제공 27 · 불친절&응대미흡 24 · 메뉴품질 5 · 대기불만 4 · 음료이물 3 · 베이커리(자체생산) 이물질 2 · 점포위생 2 · 고객피해 2",
+                        "상품품질 70 · 이물질 3",
+                        "시스템불편 24 · 프로모션 8 · 사이트이용불편 9",
+                        "오제공 3 · 초콜릿 훼손 1 · 오결제 1 · 환불정책안내미흡 1 · 소비기한불만 1"
+                    ]
+                },
+                managementPoint: "생산팀 213건(전체 49.3%) 집중 관리 · 오제공(누락) 136건이 최다 발생 유형",
+                onlinePie: { labels: ['오제공(누락)', '상품품질', '배송불만', '원두품질', '시스템불편', '프로모션', '이용불편', '원두 포장품질', '원두이물', '상품이물'], data: [44, 17, 10, 10, 8, 3, 3, 3, 2, 0.3], counts: [136, 53, 31, 29, 24, 8, 9, 10, 5, 1], colors: ['#4a81d4', '#1c3664', '#85929e', '#2c3e50', '#5dade2', '#f4d03f', '#e67e22', '#95a5a6', '#e74c3c', '#c0392b'] },
+                storePie: { labels: ['매장이용불편', '오제공(누락)', '불친절&응대미흡', '상품품질(MD, OEM)', '메뉴품질', '대기불만', '음료이물', '고객피해', '베이커리이물', '점포위생', '원두품질'], data: [24, 23, 20, 16, 4, 3, 2, 2, 2, 2, 2], counts: [29, 27, 24, 19, 5, 4, 3, 2, 2, 2, 2], colors: ['#4a81d4', '#eb7a2b', '#f1c40f', '#a4b0be', '#16a085', '#3498db', '#2ecc71', '#e74c3c', '#9b59b6', '#34495e', '#7f8c8d'] },
+                issues: [
+                    { category: "다발생", icon: "🚨", color: "#CE0019", items: [ "원두 포장 품질 불만 7건 (원두 봉투 지퍼백 불량 6 · 포장지 터짐 1)", "자사몰 오제공·누락 5건 (오제공 3 · 누락 2)" ] },
+                    { category: "점포 서비스", icon: "🏪", color: "#2980b9", items: [ "오제공·누락 5건 (더현대여의도점 원두 중량 오제공 · 서울역점 음료 제조 불량 · 강릉본점 케이크 포장 누락 · 스타필드하남점 파이 누락·포장 누락 · 역삼역점 쇼콜라 사브레 포장 누락)", "이용 불편 4건 (경주점 커피 품질·플라스틱컵 불만 · 포스코센터점 테라오더 대기시간 안내 미흡 · 경주점 드립커피 제공 전 넘침 · 신세계대구점 케이크 포장 불만)", "불친절 2건 (원그로브점 직원 불친절·응대 미흡)", "응대 미흡 2건 (청주지웰시티점 반납 안내 · 잠실한강공원점 주문 마감 안내)" ] },
+                    { category: "품질·안전", icon: "🛡️", color: "#d35400", items: [ "상품 품질 불만 3건 (유리 머그 불량 2 · 미르 텀블러 코팅 불량 1)", "원두 품질 불만 3건 (강릉 블렌드 향미 1 · 에티오피아 리무 향미 1 · 어센틱 블렌드 향미 1)", "이물 2건 (드립백 노란색 비정형 이물 1 · 파우더 커피 플라스틱 이물 1)", "점포 메뉴 품질 1건 (세종점 카푸치노 밀크폼 품질·응대 불만)", "ADCP 상품 품질 1건 (선물용 초콜릿 소비기한 불만)" ] },
+                    { category: "기타", icon: "📌", color: "#7f8c8d", items: [ "배송 불만 3건 (상품 파손 2 · 배송 지연 1)", "자사몰 이용 불편 2건 (주문자 이름 수정 불가 · 선물 주문 배송 알림 서비스 부재)" ] }
+                ],
+                internalIssues: {
+                    summary: "<strong>■ 10월 총계 174건 · 566개</strong> <span style='color:#1c3664; font-weight:600;'>(품질 52건·242개 | 이물 3건·6개 | 파손·변형 22건·69개 | 식품안전 9건·11개 | 오입고·미입고 88건·238개)</span><br><span style='color: #666; font-size: 12.5px; display: inline-block; margin-top: 5px;'>※ 점포 품질 이슈 집계 기준이며, 아래는 다발생·이물·식품안전 등 주요 관리 이슈를 선별하여 기재<br>※ 쇼콜라크런치케이크 품질 관련 이슈 총 19건·112개(외관·형태 불량 15건·101개 / 파손 4건·11개)</span>",
+                    items: [
+                        { category: "이물", text: "<span class='oem-badge'>OEM</span>바닐라빈크로핀 2건·5개(비정형 이물) / 당근케이크 1건·1개(비닐)", color: "#e74c3c" },
+                        { category: "품질 불량", text: "<span class='oem-badge'>OEM</span>커팅티라미수 16건·73개(시럽 과다) / 쇼콜라크런치케이크 15건·101개(외관·형태 불량) / 사과 5건·8개(부패) / 피칸아몬드데니쉬 1건·12개(형태 불량) / 크로와상 1건·6개(규격 불량)", color: "#f39c12" },
+                        { category: "파손·변형", text: "시그니처 피칸파이 5건·13개(변형) / 쇼콜라크런치케이크 4건·11개(파손) / 당근케이크 1건·10개(파손) / 커피콩초콜릿무스 1건·12개(포장재 제거 시 표면 손상)", color: "#34495e" },
+                        { category: "식품 안전", text: "한글표시사항 훼손·미부착 7건·9개(뺑오쇼콜라 4 / 베이킹소다 2 / 말차분말·잠봉오트·크로와상 각 1) / 소비기한 관련 2건·2개(액상 에스프레소·캐모마일 각 1)", color: "#9b59b6" }
+                    ]
+                }
             }
         };
 
@@ -544,11 +572,12 @@
             monthlyTrendChart = new Chart(document.getElementById('monthlyTrendChart'), {
                 type: 'line',
                 data: {
-                    labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월'],
+                    // 💡 10월 빈 프레임 세팅
+                    labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월'],
                     datasets: [
-                        { type: 'line', label: '점당 클레임 건수', data: [0.20, 0.16, 0.45, 0.32, 0.32, 0.42, 0.26, 0.65, 0.56], borderColor: '#1c3664', backgroundColor: '#1c3664', borderWidth: 3, tension: 0, yAxisID: 'y1', order: 1, datalabels: { anchor: 'start', align: 'bottom', color: '#1c3664', font: { size: isMobile() ? 10 : 12, weight: 'bold' }, offset: 5 } },
-                        { type: 'line', label: '클레임', data: [45, 37, 35, 31, 21, 57, 65, 50, 57], borderColor: '#4a81d4', backgroundColor: '#4a81d4', borderWidth: 3, tension: 0, yAxisID: 'y', order: 2, datalabels: { anchor: 'end', align: 'top', color: '#4a81d4', font: { size: isMobile() ? 10 : 12, weight: 'bold' }, offset: 5 } },
-                        { type: 'bar', label: '이물질 건수', data: [45, 69, 33, 27, 23, 16, 24, 19, 13], backgroundColor: '#dcdde1', barThickness: isMobile() ? 15 : 25, yAxisID: 'y', order: 3, datalabels: { anchor: 'end', align: 'bottom', color: '#333', font: { size: isMobile() ? 10 : 12, weight: 'bold' } } }
+                        { type: 'line', label: '점당 클레임 건수', data: [0.20, 0.16, 0.45, 0.32, 0.32, 0.42, 0.26, 0.63, 0.55, 0.41], borderColor: '#1c3664', backgroundColor: '#1c3664', borderWidth: 3, tension: 0, yAxisID: 'y1', order: 1, datalabels: { anchor: 'start', align: 'bottom', color: '#1c3664', font: { size: isMobile() ? 10 : 12, weight: 'bold' }, offset: 5 } },
+                        { type: 'line', label: '클레임', data: [45, 37, 35, 31, 21, 57, 65, 50, 57, 40], borderColor: '#4a81d4', backgroundColor: '#4a81d4', borderWidth: 3, tension: 0, yAxisID: 'y', order: 2, datalabels: { anchor: 'end', align: 'top', color: '#4a81d4', font: { size: isMobile() ? 10 : 12, weight: 'bold' }, offset: 5 } },
+                        { type: 'bar', label: '이물질 건수', data: [45, 69, 33, 27, 23, 16, 24, 19, 13, 5], backgroundColor: '#dcdde1', barThickness: isMobile() ? 15 : 25, yAxisID: 'y', order: 3, datalabels: { anchor: 'end', align: 'bottom', color: '#333', font: { size: isMobile() ? 10 : 12, weight: 'bold' } } }
                     ]
                 },
                 options: { 
@@ -575,7 +604,6 @@
 
             document.getElementById('title-month').innerText = data.titleMonth;
             
-            // 💡 1~6월은 ADCP 카드를 숨기고 그리드를 4칸으로 변경, 7월부터는 5칸 노출
             const adcpCard = document.getElementById('adcp-card');
             const kpiContainer = document.getElementById('kpi-container');
             const isAdcpVisible = !['1월', '2월', '3월', '4월', '5월', '6월'].includes(monthKey);
@@ -599,7 +627,6 @@
                 kpiContainer.classList.add('grid-4');
             }
 
-            // 상단 KPI 텍스트 주입
             document.getElementById('kpi-totalClaim').innerText = data.kpi.totalClaim + '건';
             
             const mtdClaim = document.getElementById('mtd-claim');
@@ -625,14 +652,12 @@
                 mtdStore.style.display = 'block'; mtdStore.innerHTML = data.kpi.mtdStoreText;
             } else { mtdStore.style.display = 'none'; }
 
-            // 채널 차트 업데이트
             channelChart.data.labels = data.channel.labels;
             channelChart.data.datasets[0].data = data.channel.data;
             channelChart.data.datasets[0].counts = data.channel.counts;
             channelChart.data.datasets[0].backgroundColor = data.channel.colors;
             channelChart.update();
 
-            // 책임부서별 클레임 현황 (커스텀 HTML 프로그레스 바 차트 렌더링)
             const maxDeptVal = Math.max(...data.dept.data);
             const totalDeptVal = data.dept.data.reduce((a, b) => a + b, 0);
             
@@ -656,10 +681,13 @@
                 `;
             }).join('');
             
-            let exclusionText = (monthKey === "9월") ? `<div style="font-size: 12px; color: #888; margin-top: 15px; margin-left: 5px;">※ 누적 클레임 398건 중 본사 자체 클레임 6건 제외 (책임부서별 집계 392건)</div>` : '';
+            // 💡 10월 하단 문구 업데이트 적용 완료
+            let exclusionText = "";
+            if (monthKey === "9월") exclusionText = `<div style="font-size: 12px; color: #888; margin-top: 15px; margin-left: 5px;">※ 누적 클레임 398건 중 본사 자체 클레임 6건 제외 (책임부서별 집계 392건)</div>`;
+            if (monthKey === "10월") exclusionText = `<div style="font-size: 12px; color: #888; margin-top: 15px; margin-left: 5px;">※ 누적 클레임 438건 중 본사 자체 클레임 6건 제외 (책임부서별 집계 432건)</div>`;
+
             document.getElementById('custom-dept-chart-container').innerHTML = barsHtml + exclusionText;
 
-            // 책임부서별 주요 클레임 유형 (세로형 리스트 카드 렌더링)
             let detailsHtml = data.dept.labels.map((label, idx) => {
                 let desc = data.dept.details[idx];
                 let color = data.dept.colors[idx];
@@ -672,7 +700,6 @@
             }).join('');
             document.getElementById('dept-types-container').innerHTML = detailsHtml;
 
-            // 관리 포인트 배너 렌더링
             if (data.managementPoint) {
                 document.getElementById('management-point-container').style.display = 'block';
                 document.getElementById('management-point-container').innerHTML = `
@@ -685,7 +712,6 @@
                 document.getElementById('management-point-container').style.display = 'none';
             }
 
-            // 도넛 차트 업데이트
             onlinePieChart.data.labels = data.onlinePie.labels;
             onlinePieChart.data.datasets[0].data = data.onlinePie.data;
             onlinePieChart.data.datasets[0].counts = data.onlinePie.counts;
@@ -698,7 +724,6 @@
             storePieChart.data.datasets[0].backgroundColor = data.storePie.colors;
             storePieChart.update();
 
-            // 공통 이슈 렌더링
             const issueContainer = document.getElementById('issue-container');
             const issueTitle = document.getElementById('issue-title');
             const issueGrid = document.getElementById('issue-grid');
@@ -762,6 +787,43 @@
             } else {
                 internalContainer.style.display = 'none';
             }
+
+            // 💡 월별 추이 데이터 필터링 렌더링 추가
+            renderMonthlyTrendTable(monthKey);
+        }
+
+        // 💡 10월 선택 시 1월~10월까지 나오게 하고, 9월 이전은 해당 월까지만 테이블 렌더링
+        function renderMonthlyTrendTable(monthKey) {
+            const tableBody = document.getElementById('monthly-trend-table-body');
+            const monthKeys = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월'];
+            let currentIdx = monthKeys.indexOf(monthKey);
+            
+            // 데이터 매핑
+            const row1Data = [45, 69, 33, 27, 23, 16, 24, 19, 13, 5];
+            const row2Data = [45, 37, 35, 31, 21, 57, 65, 50, 57, 40];
+            const row3Data = [0.20, 0.16, 0.45, 0.32, 0.32, 0.42, 0.26, 0.63, 0.55, 0.41];
+
+            let row1Html = `<th class="row-header"><span class="legend-box bg-gray"></span>이물질 건수</th>`;
+            let row2Html = `<th class="row-header"><span class="legend-line bg-blue"></span>클레임</th>`;
+            let row3Html = `<th class="row-header"><span class="legend-line bg-dark"></span>점당 클레임 건수</th>`;
+
+            for (let i = 0; i < monthKeys.length; i++) {
+                if (i <= currentIdx) {
+                    row1Html += `<td>${row1Data[i]}</td>`;
+                    row2Html += `<td>${row2Data[i]}</td>`;
+                    row3Html += `<td>${row3Data[i]}</td>`;
+                } else {
+                    row1Html += `<td>-</td>`;
+                    row2Html += `<td>-</td>`;
+                    row3Html += `<td>-</td>`;
+                }
+            }
+
+            tableBody.innerHTML = `
+                <tr>${row1Html}</tr>
+                <tr>${row2Html}</tr>
+                <tr>${row3Html}</tr>
+            `;
         }
     </script>
 </body>
